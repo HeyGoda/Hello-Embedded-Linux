@@ -1,10 +1,15 @@
 * [概述](#概述)
     * [准备工作](#准备工作)
-      * [使用 Buildroot 制作固件](#使用 Buildroot 制作固件)
-      * [使用 OpenWrt 制作固件](#使用 OpenWrt 制作固件)
-      * [使用 Yocto 制作固件](#使用 Yocto 制作固件)
-    * [认识和操作嵌入式 Linux 设备](#认识和操作嵌入式 Linux 设备)
-      * [▣[00_系统初始化](00_系统初始化.md)](#▣[00_系统初始化](00_系统初始化.md))
+      * [使用 Buildroot 制作固件](#使用-buildroot-制作固件)
+      * [使用 OpenWrt 制作固件](#使用-openwrt-制作固件)
+      * [使用 Yocto 制作固件](#使用-yocto-制作固件)
+    * [认识和操作嵌入式 Linux 设备](#认识和操作嵌入式-linux-设备)
+      * ▣[00_系统初始化](00_系统初始化.md)
+      * ▢[01_资源和配置](01_资源和配置.md)
+      * ▢[02_硬件设备](02_硬件设备.md)
+      * ▢[03_shell脚本](03_shell脚本.md)
+      * ▣[04_交叉编译](04_交叉编译.md)
+      * ▢[05_网络工具](05_网络工具.md)
 
 ## 概述
 嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致每种设备上的系统操作方式存在差异，在此总结一些针对嵌入式 Linux 系统的通用操作方法；
@@ -96,7 +101,7 @@ qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
 
 [Yocto](https://www.yoctoproject.org/) 是一个开源协作项目，提供了一些列模板、工具和方法，旨在帮助用户创建自定义的基于 Linux 的系统，可用于任何架构的硬件，例如：嵌入式设备、服务器或虚拟环境等；以下使用 beaglebone-yocto 板级来作演示；
 
-参考链接：[Yocto Project Quick Build — The Yocto Project ® 3.4 documentation](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)；[4 Using the Quick EMUlator (QEMU) — The Yocto Project ® 3.4 documentation](https://docs.yoctoproject.org/dev-manual/qemu.html)
+参考链接：[Yocto Project Quick Build — The Yocto Project ® 3.4 documentation](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html), [4 Using the Quick EMUlator (QEMU) — The Yocto Project ® 3.4 documentation](https://docs.yoctoproject.org/dev-manual/qemu.html)
 
 安装必要的软件：
 
