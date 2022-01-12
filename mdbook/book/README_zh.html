@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>hello_embedded_linux</title>
+        <title>Hello-Embedded-Linux</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html" class="active">hello_embedded_linux</a></li><li class="chapter-item expanded "><a href="00_启动流程.html"><strong aria-hidden="true">1.</strong> 00_启动流程</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html" class="active">Hello-Embedded-Linux</a></li><li class="chapter-item expanded "><a href="00_系统初始化.html"><strong aria-hidden="true">1.</strong> 00_系统初始化</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,24 +142,142 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="hello_embedded_linux"><a class="header" href="#hello_embedded_linux">hello_embedded_linux</a></h2>
-<p>嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪，导致每种设备上的系统操作方式存在差异，在此介绍一些针对嵌入式 Linux 系统的通用操作方法，希望初学者在碰到一个全新的嵌入式 Linux 系统时，能通过此文档介绍的知识和方法来熟悉它。</p>
+                        <ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">准备工作</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-buildroot-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 Buildroot 制作固件</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-openwrt-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 OpenWrt 制作固件</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-yocto-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 Yocto 制作固件</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A4%E8%AF%86%E5%92%8C%E6%93%8D%E4%BD%9C%E5%B5%8C%E5%85%A5%E5%BC%8F-linux-%E8%AE%BE%E5%A4%87">认识和操作嵌入式 Linux 设备</a>
+<ul>
+<li>▣<a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">00_系统初始化</a></li>
+<li>▢<a href="01_%E8%B5%84%E6%BA%90%E5%92%8C%E9%85%8D%E7%BD%AE.html">01_资源和配置</a></li>
+<li>▢<a href="02_%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87.html">02_硬件设备</a></li>
+<li>▢<a href="03_shell%E8%84%9A%E6%9C%AC.html">03_shell脚本</a></li>
+<li>▣<a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">04_交叉编译</a></li>
+<li>▢<a href="05_%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7.html">05_网络工具</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="概述"><a class="header" href="#概述">概述</a></h2>
+<p>嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致每种设备上的系统操作方式存在差异，在此总结一些针对嵌入式 Linux 系统的通用操作方法；</p>
+<h3 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h3>
+<p>本文档使用 <a href="https://www.qemu.org/">QEMU</a> 来模拟实际嵌入式设备，QEMU 是一个开源的硬件模拟器和虚拟器，当用作硬件模拟器时，QEMU 可以在一台机器（例如 PC）上运行为另一台机器（例如 ARM 开发板）制作的操作系统和程序；本文档使用 <a href="https://buildroot.org/">Buildroot</a>、<a href="https://openwrt.org/">OpenWrt</a>、<a href="https://www.yoctoproject.org/">Yocto</a> 等构建系统来制作嵌入式 Linux 系统固件，以下在 Ubuntu 20.4 系统中分别说明其制作方法；</p>
 <blockquote>
-<p>该文档撰写规范和技巧参考了<a href="https://learnku.com/docs/writing-docs">文档撰写指南</a>，感谢原作者；</p>
+<p>请先确保 Ubuntu 20.4 系统安装了 ，执行以下命令：</p>
+<pre><code class="language-shell">sudo apt install qemu
+</code></pre>
 </blockquote>
-<h3 id="00_启动流程"><a class="header" href="#00_启动流程">▢<a href="00_%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.html">00_启动流程</a></a></h3>
-<h3 id="01_资源和配置"><a class="header" href="#01_资源和配置">▢<a href="01_%E8%B5%84%E6%BA%90%E5%92%8C%E9%85%8D%E7%BD%AE.html">01_资源和配置</a></a></h3>
-<h3 id="02_硬件设备"><a class="header" href="#02_硬件设备">▢<a href="02_%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87.html">02_硬件设备</a></a></h3>
-<h3 id="03_shell脚本"><a class="header" href="#03_shell脚本">▢<a href="03_shell%E8%84%9A%E6%9C%AC.html">03_shell脚本</a></a></h3>
-<h3 id="04_交叉编译"><a class="header" href="#04_交叉编译">▣<a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">04_交叉编译</a></a></h3>
-<h3 id="05_网络工具"><a class="header" href="#05_网络工具">▢<a href="05_%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7.html">05_网络工具</a></a></h3>
+<h4 id="使用-buildroot-制作固件"><a class="header" href="#使用-buildroot-制作固件">使用 Buildroot 制作固件</a></h4>
+<p>Buildroot 是一个简单、高效、易用的构建工具，通过交叉编译生成嵌入式 Linux 系统，支持多种嵌入式 Linux 开发板，同时也支持一些 QEMU 板级；以下使用 Buildroot 板级 <code>qemu_arm_vexpress_defconfig</code> 来构建固件，对应 qemu 机器 <code>vexpress-a9</code>；</p>
+<p>安装必要的软件（参考链接： <a href="https://buildroot.org/downloads/manual/manual.html#requirement">The Buildroot user manual</a>）：</p>
+<pre><code class="language-shell">sudo apt install which sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc wget git
+</code></pre>
+<p>下载 Buildroot 源码并更新到需要的版本：</p>
+<pre><code class="language-shell"># 使用git下载源码库
+# git clone https://git.busybox.net/buildroot
+# 镜像下载
+git clone https://gitee.com/mirrors/buildroot.git
+cd buildroot
+git reset --hard 2021.02.2
+</code></pre>
+<p>执行默认配置的编译对应板级的固件：</p>
+<pre><code class="language-shell"># cd buildroot
+make qemu_arm_vexpress_defconfig
+make
+</code></pre>
+<p>编译成功后固件在 <code>output/images/</code> 目录下，如图：</p>
+<div align=center><img src="figures/buildroot_make.png"></div>
+<p>执行脚本 <code>output/images/start-qemu.sh serial-only</code> 以终端方式（无显示屏）运行编译后的固件，如图：</p>
+<div align=center><img src="figures/buildroot_start.png"></div>
+<h4 id="使用-openwrt-制作固件"><a class="header" href="#使用-openwrt-制作固件">使用 OpenWrt 制作固件</a></h4>
+<p><a href="https://openwrt.org/">OpenWrt</a> 是一个面向嵌入式设备的 Linux 操作系统，最初是针对路由器设备，拥有强大的网络组件和扩展性，具有良好的模块化和可定制性，现在也常用做其他嵌入式设备的 Linux 发行版；</p>
+<p>因 <a href="https://git.openwrt.org/">OpenWrt 源码</a> 编译时间较长，且编译过程中可能碰到各种各样的问题，为方便起见，在此使用 <a href="https://openwrt.org/docs/guide-user/virtualization/qemu">官方提供</a> 的 QEMU arm 镜像文件；</p>
+<p>下载镜像文件：</p>
+<pre><code class="language-shell">mkdir -p openwrt-bin
+cd openwrt-bin
+# 下载内核镜像
+wget https://downloads.openwrt.org/snapshots/targets/armvirt/32/openwrt-armvirt-32-zImage
+# 下载根文件系统镜像并解压
+wget https://downloads.openwrt.org/snapshots/targets/armvirt/32/openwrt-armvirt-32-rootfs-ext4.img.gz
+gunzip -kv openwrt-armvirt-32-rootfs-ext4.img.gz
+</code></pre>
+<p>如图：</p>
+<div align=center><img src="figures/openwrt_down.png"></div>
+<p>使用以下命令运行镜像：</p>
+<pre><code class="language-shell"># run-qemu-arm_openwrt.sh
+qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
+-kernel openwrt-armvirt-32-zImage -append &quot;console=ttyAMA0,115200 rootwait root=fe00&quot; \
+-blockdev driver=raw,node-name=hd0,cache.direct=on,file.driver=file,file.filename=openwrt-armvirt-32-rootfs-ext4.img \
+-device virtio-blk-pci,drive=hd0
+</code></pre>
+<p>运行后如图：</p>
+<div align=center><img src="figures/openwrt_start.png"></div>
+<h4 id="使用-yocto-制作固件"><a class="header" href="#使用-yocto-制作固件">使用 Yocto 制作固件</a></h4>
+<p><a href="https://www.yoctoproject.org/">Yocto</a> 是一个开源协作项目，提供了一些列模板、工具和方法，旨在帮助用户创建自定义的基于 Linux 的系统，可用于任何架构的硬件，例如：嵌入式设备、服务器或虚拟环境等；以下使用 beaglebone-yocto 板级来作演示；</p>
+<p>参考链接：<a href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html">Yocto Project Quick Build — The Yocto Project ® 3.4 documentation</a>, <a href="https://docs.yoctoproject.org/dev-manual/qemu.html">4 Using the Quick EMUlator (QEMU) — The Yocto Project ® 3.4 documentation</a></p>
+<p>安装必要的软件：</p>
+<pre><code class="language-shell">sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool
+</code></pre>
+<p>下载源码并更新到需要的版本：</p>
+<pre><code class="language-shell"># 使用git下载源码库
+# git clone git://git.yoctoproject.org/poky
+# cd poky
+# git reset --hard dunfell-23.0.12
+# 若git下载较慢，可直接下载源码包并解压
+wget http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.12/poky-dunfell-23.0.12.tar.bz2
+tar -xvf poky-dunfell-23.0.12.tar.bz2
+</code></pre>
+<p>设置环境变量：</p>
+<pre><code class="language-shell">cd poky-dunfell-23.0.12
+source oe-init-build-env
+# 执行上一条命令后，终端将进入build目录，下面的内容都以该目录为基础
+</code></pre>
+<p>修改编译配置文件 <code>build/conf/local.conf</code>，修改板级为 <code>beaglebone-yocto</code>，将第 31 行：</p>
+<pre><code class="language-shell">#MACHINE ?= &quot;beaglebone-yocto&quot;
+</code></pre>
+<p>改为：</p>
+<pre><code class="language-shell">MACHINE ?= &quot;beaglebone-yocto&quot;
+</code></pre>
+<p>启用并行编译并节省磁盘空间，在文件末尾加入：</p>
+<pre><code class="language-shell">INHERIT += &quot;rm_work&quot;
+BB_NUMBER_THREADS = &quot;2&quot;
+PARALLEL_MAKE = &quot;-j 2&quot;
+</code></pre>
+<p>如图：</p>
+<div align=center><img src="figures/yocto_env.png"></div>
+<p>然后开始编译：</p>
+<pre><code class="language-shell">bitbake -k core-image-minimal
+</code></pre>
+<p>编译时间较长，若编译失败，可删除 <code>sstate-cache</code>, <code>cache</code>, <code>tmp</code>目录下的所有文件重新编译，编译成功后的固件在 <code>tmp/deploy/images/beaglebone-yocto/</code> 目录下，如图：</p>
+<div align=center><img src="figures/yocto_build.png"></div>
+<p>修改 QEMU 运行配置文件 <code>tmp/deploy/images/beaglebone-yocto/core-image-minimal-beaglebone-yocto.qemuboot.conf</code>，加入选项 <code>-nographic</code>，如图：</p>
+<div align=center><img src="figures/yocto_qemu_conf.png"></div>
+<p>最后执行以下命令运行编译的镜像：</p>
+<pre><code>runqemu beaglebone-yocto
+</code></pre>
+<p>运行后如图：</p>
+<div align=center><img src="figures/yocto_start.png"></div>
+<h3 id="认识和操作嵌入式-linux-设备"><a class="header" href="#认识和操作嵌入式-linux-设备">认识和操作嵌入式 Linux 设备</a></h3>
+<h4 id="00_系统初始化"><a class="header" href="#00_系统初始化">▣<a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">00_系统初始化</a></a></h4>
+<h4 id="01_资源和配置"><a class="header" href="#01_资源和配置">▢<a href="01_%E8%B5%84%E6%BA%90%E5%92%8C%E9%85%8D%E7%BD%AE.html">01_资源和配置</a></a></h4>
+<h4 id="02_硬件设备"><a class="header" href="#02_硬件设备">▢<a href="02_%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87.html">02_硬件设备</a></a></h4>
+<h4 id="03_shell脚本"><a class="header" href="#03_shell脚本">▢<a href="03_shell%E8%84%9A%E6%9C%AC.html">03_shell脚本</a></a></h4>
+<h4 id="04_交叉编译"><a class="header" href="#04_交叉编译">▣<a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">04_交叉编译</a></a></h4>
+<h4 id="05_网络工具"><a class="header" href="#05_网络工具">▢<a href="05_%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7.html">05_网络工具</a></a></h4>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next" href="00_启动流程.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="00_系统初始化.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -170,7 +288,7 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next" href="00_启动流程.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="00_系统初始化.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">hello_embedded_linux</a></li><li class="chapter-item expanded "><a href="00_启动流程.html"><strong aria-hidden="true">1.</strong> 00_启动流程</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html" class="active"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded "><a href="00_系统初始化.html"><strong aria-hidden="true">1.</strong> 00_系统初始化</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html" class="active"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,10 +148,12 @@
 <li><a href="#%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E7%A8%8B%E5%BA%8F%E9%92%88%E5%AF%B9-arm-%E8%8A%AF%E7%89%87%E7%9A%84%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95">一些开源程序针对 ARM 芯片的编译方法</a>
 <ul>
 <li><a href="#busybox">BusyBox</a></li>
+<li><a href="#glibc">glibc</a></li>
 <li><a href="#gdb">GDB</a></li>
 <li><a href="#iw">iw</a></li>
 <li><a href="#wpa_supplicant">wpa_supplicant</a></li>
 <li><a href="#tcpdump">TCPDUMP</a></li>
+<li><a href="#ntp">NTP</a></li>
 <li><a href="#opus">Opus</a></li>
 </ul>
 </li>
@@ -165,59 +167,101 @@
 </code></pre>
 <p>编译方法可大致分为以下 2 种：</p>
 <ul>
-<li>自己写的代码直接使用工具链编译即可；</li>
-</ul>
+<li>
+<p>自己写的代码直接使用工具链编译即可；</p>
 <pre><code class="language-shell">arm-linux-gnueabihf-gcc main.c -o main.elf
 </code></pre>
-<ul>
-<li>公开的开源程序，一般使用下面的步骤编译：</li>
-</ul>
+</li>
+<li>
+<p>公开的开源程序，一般使用下面的步骤编译：</p>
 <pre><code class="language-shell">./configure --prefix=$(pwd)/cross_install --host=arm-linux-gnueabihf
 make
 make install
 </code></pre>
-<blockquote>
+<p>需要注意的是：</p>
 <p>1、有的程序在以上步骤之前，需要先调用 <code>autogen.sh</code> 生成 <code>configure</code> 文件；</p>
 <p>2、执行 <code>configure</code> 时可以传入不同的参数，可以执行 <code>./configure -h</code> 进行学习；</p>
 <p>3、执行 <code>make</code> 时也可以传入不同的参数进行编译配置，可以阅读 Makefile 来了解支持的配置；</p>
-</blockquote>
+</li>
+</ul>
 <h3 id="一些开源程序针对-arm-芯片的编译方法"><a class="header" href="#一些开源程序针对-arm-芯片的编译方法"><strong>一些开源程序针对 ARM 芯片的编译方法</strong></a></h3>
-<blockquote>
-<p>如无特别说明，下面交叉编译后生成的文件均在 cross_install 目录中，只要将该目录下的文件对应的拷贝到嵌入式设备上即可正常使用；</p>
-</blockquote>
+<p><em>如无特别说明，下面交叉编译后生成的文件均在 cross_install 目录中，只要将该目录下的文件拷贝到嵌入式设备上对应的目录即可正常使用；</em></p>
 <h4 id="busybox"><a class="header" href="#busybox"><a href="https://busybox.net/">BusyBox</a></a></h4>
 <p><a href="https://baike.baidu.com/item/busybox">BusyBox</a> 是一个集成了三百多个最常用 Linux 命令和工具的软件。BusyBox 包含了一些简单的工具，例如 ls、cat和echo等等，还包含了一些更大、更复杂的工具，例 grep、find、mount 以及 telnet 。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。简单的说 BusyBox 就好像是个大工具箱，它集成压缩了 Linux 的许多工具和命令，也包含了 Linux 系统的自带的 shell。</p>
 <ul>
-<li>下载代码，并更新到最近的稳定版本：</li>
-</ul>
-<pre><code class="language-shell">git clone git://git.busybox.net/busybox
+<li>
+<p>下载代码，并更新到最近的稳定版本：</p>
+<pre><code class="language-shell"># download_busybox.sh
+
+git clone git://git.busybox.net/busybox
 cd busybox
 git reset --hard 1_33_2
 </code></pre>
-<ul>
-<li>采用默认配置，参考 https://busybox.net/FAQ.html 和 <code>Makefile</code> 进行交叉编译</li>
-</ul>
-<pre><code class="language-shell">make defconfig
+</li>
+<li>
+<p>采用默认配置，参考 https://busybox.net/FAQ.html 和 <code>Makefile</code> 进行交叉编译</p>
+<pre><code class="language-shell"># build_busybox.sh
+
+make defconfig
 make -j 4 CROSS_COMPILE=arm-linux-gnueabihf-
 # 以下为静态编译
 # LDFLAGS=&quot;--static&quot; make -j 4 CROSS_COMPILE=arm-linux-gnueabihf-
 make install
 # 编译后生成的可执行程序在 _install 目录下
 </code></pre>
-<p>BusyBox 使用参考：<a href="https://busybox.net/downloads/BusyBox.html">BusyBox - The Swiss Army Knife of Embedded Linux</a></p>
+</li>
+</ul>
+<p>BusyBox 使用参考链接：<a href="https://busybox.net/downloads/BusyBox.html">BusyBox - The Swiss Army Knife of Embedded Linux</a></p>
+<h4 id="glibc"><a class="header" href="#glibc"><a href="https://www.gnu.org/software/libc/">glibc</a></a></h4>
+<p><a href="https://baike.baidu.com/item/glibc/10058561">glibc</a> 是 GNU 发布的 libc 库，即 c 运行库。glibc 是 linux 系统中最底层的 api，几乎其它任何运行库都会依赖于 glibc。glibc 除了封装 linux 操作系统所提供的系统服务外，它本身也提供了许多其它一些必要功能服务的实现。由于 glibc 囊括了几乎所有的 UNIX 通行的标准，可以想见其内容包罗万象。而就像其他的 UNIX 系统一样，其内含的档案群分散于系统的树状目录结构中，像一个支架一般撑起整个操作系统。在 GNU/Linux 系统中，其 C 函式库发展史点出了 GNU/Linux 演进的几个重要里程碑，用 glibc 作为系统的 C 函式库，是 GNU/Linux 演进的一个重要里程碑。</p>
+<ul>
+<li>
+<p>下载代码并更新到需要的版本：</p>
+<pre><code class="language-shell"># download_glibc.sh
+
+git clone https://sourceware.org/git/glibc.git &amp;&amp; cd glibc &amp;&amp; git reset --hard glibc-2.34 &amp;&amp; cd -
+</code></pre>
+</li>
+<li>
+<p>编译：</p>
+<pre><code class="language-shell"># build_glibc.sh
+
+cd glibc
+
+INSTALL_DIR=cross_install
+mkdir -p ${INSTALL_DIR}
+BUILD_DIR=cross_build
+mkdir -p ${BUILD_DIR}
+
+cd ${BUILD_DIR}
+../configure --prefix=$(pwd)/../${INSTALL_DIR} --host=arm-linux-gnueabihf &amp;&amp; {
+        if false; then
+                make uninstall
+                make clean
+        fi
+        make -j 20
+                make install
+}
+</code></pre>
+</li>
+</ul>
 <h4 id="gdb"><a class="header" href="#gdb"><a href="https://sourceware.org/gdb/">GDB</a></a></h4>
 <p><a href="http://www.gdbtutorial.com/tutorial/what-gdb">GDB</a> 或 GNU 项目调试器是 GNU 项目，用于调试应用程序并分析程序执行期间发生的情况，允许开发者查看在另一个程序执行时“内部”发生了什么——或者另一个程序在它崩溃时正在做什么。 </p>
 <ul>
-<li>下载代码并更新到需要的版本：</li>
-</ul>
-<pre><code class="language-shell"># git clone git://sourceware.org/git/binutils-gdb.git
+<li>
+<p>下载代码并更新到需要的版本：</p>
+<pre><code class="language-shell"># download_gdb.sh
+
+# git clone git://sourceware.org/git/binutils-gdb.git
 # 镜像下载
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/binutils-gdb.git &amp;&amp; cd binutils-gdb &amp;&amp; git reset --hard gdb-10.2-release &amp;&amp; cd -
 </code></pre>
-<ul>
-<li>编译：</li>
-</ul>
-<pre><code class="language-shell">cd binutils-gdb
+</li>
+<li>
+<p>编译：</p>
+<pre><code class="language-shell"># build_gdb.sh
+
+cd binutils-gdb
 
 INSTALL_DIR=cross_install
 mkdir -p ${INSTALL_DIR}
@@ -231,20 +275,26 @@ mkdir -p ${INSTALL_DIR}
         make -j20 &amp;&amp; make install
 }
 </code></pre>
-<p>GDB使用参考：<a href="https://www.yanbinghu.com/2019/04/20/41283.html">GDB调试指南</a>、<a href="http://www.gdbtutorial.com/tutorial/what-gdb">GDB Tutorial</a></p>
+</li>
+</ul>
+<p>GDB 使用参考链接：<a href="https://www.yanbinghu.com/2019/04/20/41283.html">GDB调试指南</a>、<a href="http://www.gdbtutorial.com/tutorial/what-gdb">GDB Tutorial</a></p>
 <h4 id="iw"><a class="header" href="#iw"><a href="https://wireless.wiki.kernel.org/en/users/documentation/iw">iw</a></a></h4>
 <p>iw 是一个无线设备命令行配置工具，支持内核中所有基于 nl80211 的驱动程序。 旧工具 <a href="https://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html">Wireless Tools for Linux（iwconfig）</a> 已弃用，强烈建议切换到 iw。</p>
-<p>iw 依赖libnl库。</p>
+<p>iw 依赖 libnl 库。</p>
 <ul>
-<li>下载代码并更新到需要的版本：</li>
-</ul>
-<pre><code class="language-shell">git clone git://github.com/tgraf/libnl.git &amp;&amp; cd libnl &amp;&amp; git reset --hard libnl3_2_25 &amp;&amp; cd -
+<li>
+<p>下载代码并更新到需要的版本：</p>
+<pre><code class="language-shell"># download_iw.sh
+
+git clone git://github.com/tgraf/libnl.git &amp;&amp; cd libnl &amp;&amp; git reset --hard libnl3_2_25 &amp;&amp; cd -
 git clone http://git.sipsolutions.net/iw.git/ &amp;&amp; cd iw &amp;&amp; git reset --hard v5.9 &amp;&amp; cd -
 </code></pre>
-<ul>
-<li>编译 libnl：</li>
-</ul>
-<pre><code class="language-shell">cd libnl
+</li>
+<li>
+<p>编译 libnl：</p>
+<pre><code class="language-shell"># build_libnl.sh
+
+cd libnl
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -258,28 +308,36 @@ mkdir -p ${INSTALL_DIR}
         make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 iw</li>
-</ul>
-<pre><code class="language-shell">cd iw
+</li>
+<li>
+<p>编译 iw</p>
+<pre><code class="language-shell"># build_iw.sh
+
+cd iw
 make PREFIX=./cross_install PKG_CONFIG_PATH=../libnl/cross_install/lib/pkgconfig CC=arm-linux-gnueabihf-gcc
 </code></pre>
-<p>iw 使用参考：<a href="https://ywnz.com/linux/iw/">Linux iw命令使用详解</a>、<a href="https://wireless.wiki.kernel.org/en/users/documentation/iw/replace-iwconfig">replace-iwconfig Linux Wireless] (kernel.org)</a></p>
+</li>
+</ul>
+<p>iw 使用参考链接：<a href="https://ywnz.com/linux/iw/">Linux iw命令使用详解</a>、<a href="https://wireless.wiki.kernel.org/en/users/documentation/iw/replace-iwconfig">replace-iwconfig Linux Wireless</a></p>
 <h4 id="wpa_supplicant"><a class="header" href="#wpa_supplicant"><a href="https://w1.fi/wpa_supplicant/">wpa_supplicant</a></a></h4>
 <p><a href="http://blog.chinaunix.net/uid-29181887-id-4826168.html"><strong>WPA</strong> </a>是 WiFi Protected Access 的缩写，中文含义为 “ WiFi 网络安全存取 ” 。WPA 是一种基于标准的可互操作的 WLAN 安全性增强解决方案，可大大增强现有以及未来无线局域网络的数据保护和访问控制水平。</p>
 <p><a href="https://segmentfault.com/a/1190000011579147"><strong>wpa_supplicant</strong></a> 是一个连接、配置 WIFI 的工具，它主要包含 wpa_supplicant 与 wpa_cli 两个程序。通常情况下，可以通过 wpa_cli 来进行 WIFI 的配置与连接，如果有特殊的需要，可以编写应用程序直接调用 wpa_supplicant 的接口直接开发。</p>
 <p><a href="https://www.cnblogs.com/hokori/p/14168584.html">wpa_supplicant</a> 的编译依赖 <a href="https://www.openssl.org/">openssl</a> 和 <a href="https://www.infradead.org/%7Etgr/libnl/">libnl</a>。</p>
 <ul>
-<li>下载代码并更新到需要的版本：</li>
-</ul>
-<pre><code class="language-shell">git clone git://github.com/tgraf/libnl.git &amp;&amp; cd libnl &amp;&amp; git reset --hard libnl3_2_25 &amp;&amp; cd -
+<li>
+<p>下载代码并更新到需要的版本：</p>
+<pre><code class="language-shell"># download_wpa.sh
+
+git clone git://github.com/tgraf/libnl.git &amp;&amp; cd libnl &amp;&amp; git reset --hard libnl3_2_25 &amp;&amp; cd -
 git clone git://git.openssl.org/openssl.git &amp;&amp; cd openssl &amp;&amp; git reset --hard OpenSSL_1_1_1 &amp;&amp; cd -
 git clone git://w1.fi/srv/git/hostap.git &amp;&amp; cd hostap &amp;&amp; git reset --hard hostap_2_9 &amp;&amp; cd -
 </code></pre>
-<ul>
-<li>编译 libnl</li>
-</ul>
-<pre><code class="language-shell">cd libnl
+</li>
+<li>
+<p>编译 libnl</p>
+<pre><code class="language-shell"># build_libnl.sh
+
+cd libnl
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -293,32 +351,35 @@ mkdir -p ${INSTALL_DIR}
         make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 openssl</li>
+</li>
+<li>
+<p>编译 openssl</p>
+<pre><code class="language-shell"></code></pre>
+</li>
 </ul>
-<pre><code class="language-shell">cd openssl
-
-INSTALL_DIR=cross_install
-mkdir -p ${INSTALL_DIR}
-
-./Configure linux-generic32 --prefix=$(pwd)/${INSTALL_DIR} \
--lpthread \
+<h1 id="build_opensslsh"><a class="header" href="#build_opensslsh">build_openssl.sh</a></h1>
+<p>cd openssl</p>
+<p>INSTALL_DIR=cross_install
+mkdir -p ${INSTALL_DIR}</p>
+<p>./Configure linux-generic32 --prefix=$(pwd)/${INSTALL_DIR} <br />
+-lpthread <br />
 --cross-compile-prefix=arm-linux-gnueabihf- &amp;&amp; {
-        if true; then
-                make uninstall
-                make clean
-        fi
-        make depend &amp;&amp; make &amp;&amp; make install
-}
-</code></pre>
-<ul>
-<li>编译 wpa_supplicant</li>
-</ul>
-<p>首先，复制缺省编译配置文件</p>
-<pre><code class="language-shell">cd hostap/wpa_supplicant
+if true; then
+make uninstall
+make clean
+fi
+make depend &amp;&amp; make &amp;&amp; make install
+}</p>
+<pre><code>
+- 编译 wpa_supplicant
+
+首先，复制缺省编译配置文件
+
+```shell
+cd hostap/wpa_supplicant
 cp defconfig .config
 </code></pre>
-<p>编辑 .config 文件，加入以下配置：</p>
+<p>接着编辑 .config 文件，加入以下配置：</p>
 <pre><code class="language-makefile"># 使用 WEXT 通过 ioctl 和驱动通信，典型工具如：ifconfig
 CONFIG_DRIVER_WEXT=y
 
@@ -340,7 +401,9 @@ LIBS += -L../../openssl/cross_install/lib/
 #CONFIG_CTRL_IFACE_DBUS_INTRO=y
 </code></pre>
 <p>然后进行交叉编译：</p>
-<pre><code class="language-shell">INSTALL_DIR=cross_install
+<pre><code class="language-shell"># build_wpa.sh
+
+INSTALL_DIR=cross_install
 mkdir -p ${INSTALL_DIR}
 export LIBDIR=$(pwd)/${INSTALL_DIR}/lib/
 export INCDIR=$(pwd)/${INSTALL_DIR}/include/
@@ -348,18 +411,22 @@ export BINDIR=$(pwd)/${INSTALL_DIR}/bin/
 make CC=arm-linux-gnueabihf-gcc 
 make install
 </code></pre>
-<p>wpa_supplicant 使用方法参考：<a href="https://www.cnblogs.com/hokori/p/14168584.html">Linux 使用wpa_supplicant手动配置连接wifi</a></p>
+<p>wpa_supplicant 使用参考链接：<a href="https://www.cnblogs.com/hokori/p/14168584.html">Linux 使用wpa_supplicant手动配置连接wifi</a></p>
 <h4 id="tcpdump"><a class="header" href="#tcpdump"><a href="https://www.tcpdump.org/">TCPDUMP</a></a></h4>
 <p>TCPDUMP 是 Linux 系统下的一个强大的命令，可以将网络中传送的数据包完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供 and、or、not 等逻辑语句来帮助你去掉无用的信息；TCPDUMP 依赖于开源库 <a href="https://www.cnblogs.com/coder2012/archive/2013/04/13/3012390.html"><strong>libpcap</strong></a> (无需单独编译，可以随 TCPDUMP 一起编译)；</p>
 <ul>
-<li>下载代码并更新到需要的版本：</li>
-</ul>
-<pre><code class="language-shell">git clone https://github.com/the-tcpdump-group/tcpdump &amp;&amp; cd tcpdump &amp;&amp; git reset --hard tcpdump-4.99.1 &amp;&amp; cd -
+<li>
+<p>下载代码并更新到需要的版本：</p>
+<pre><code class="language-shell"># download_tcpdump.sh
+
+git clone https://github.com/the-tcpdump-group/tcpdump &amp;&amp; cd tcpdump &amp;&amp; git reset --hard tcpdump-4.99.1 &amp;&amp; cd -
 </code></pre>
-<ul>
-<li>编译 TCPDUMP：</li>
-</ul>
-<pre><code class="language-shell">cd tcpdump
+</li>
+<li>
+<p>编译 TCPDUMP：</p>
+<pre><code class="language-shell"># build_tcpdump.sh
+
+cd tcpdump
 
 INSTALL_DIR=cross_install
 mkdir -p ${INSTALL_DIR}
@@ -372,26 +439,94 @@ mkdir -p ${INSTALL_DIR}
         make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>TCPDUMP 使用参考：<a href="https://zhuanlan.zhihu.com/p/74812069">Linux系统 tcpdump 抓包命令使用教程</a>、<a href="https://www.cnblogs.com/wongbingming/p/13212306.html">tcpdump 使用指南</a>、<a href="https://www.tcpdump.org/manpages/tcpdump.1.html">Man page of TCPDUMP</a>、<a href="https://danielmiessler.com/study/tcpdump/#ip6">A tcpdump Tutorial with Examples</a></li>
+</li>
+<li>
+<p>TCPDUMP 使用参考链接：<a href="https://zhuanlan.zhihu.com/p/74812069">Linux系统 tcpdump 抓包命令使用教程</a>、<a href="https://www.cnblogs.com/wongbingming/p/13212306.html">tcpdump 使用指南</a>、<a href="https://www.tcpdump.org/manpages/tcpdump.1.html">Man page of TCPDUMP</a>、<a href="https://danielmiessler.com/study/tcpdump/#ip6">A tcpdump Tutorial with Examples</a></p>
+</li>
 </ul>
+<h4 id="ntp"><a class="header" href="#ntp"><a href="http://www.ntp.org/">NTP</a></a></h4>
+<p><a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%97%B6%E9%97%B4%E5%8D%8F%E8%AE%AE/5927826">网络时间协议</a>，英文名称：Network Time Protocol（NTP）是用来使计算机时间同步化的一种协议，它可以使计算机对其服务器或时钟源（如石英钟，GPS 等等)做同步化，它可以提供高精准度的时间校正（LAN 上与标准间差小于 1 毫秒，WAN 上几十毫秒），且可介由加密确认的方式来防止恶毒的协议攻击。NTP 的目的是在无序的 Internet 环境中提供精确和健壮的时间服务。</p>
+<p>ntp 依赖 openssl；</p>
+<ul>
+<li>
+<p>下载代码：</p>
+<pre><code class="language-shell"># download_ntp.sh
+
+git clone https://github.com/openssl/openssl.git &amp;&amp; cd openssl &amp;&amp; git reset --hard OpenSSL_1_1_1 &amp;&amp; cd -
+
+# github上为不稳定版本，可能编译失败
+# git clone https://github.com/ntp-project/ntp.git 
+# 直接下载稳定版本源码包
+wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.8p15.tar.gz &amp;&amp; tar -xzvf ntp-4.2.8p15.tar.gz -C ./
+</code></pre>
+</li>
+<li>
+<p>编译 openssl：</p>
+<pre><code class="language-shell"># build_openssl.sh
+
+cd openssl
+
+INSTALL_DIR=cross_install
+mkdir -p ${INSTALL_DIR}
+
+./Configure linux-generic32 --prefix=$(pwd)/${INSTALL_DIR} \
+-lpthread \
+--cross-compile-prefix=arm-linux-gnueabihf- &amp;&amp; {
+    if true; then
+        make uninstall
+        make clean
+    fi  
+    make depend &amp;&amp; make &amp;&amp; make install
+}
+</code></pre>
+</li>
+<li>
+<p>编译 ntp：</p>
+<pre><code class="language-shell"># build_ntp.sh
+
+cd ntp-4.2.8p15
+./bootstrap
+
+INSTALL_DIR=cross_install
+mkdir -p ${INSTALL_DIR}
+
+./configure --prefix=$(pwd)/${INSTALL_DIR} --host=arm-linux-gnueabihf \
+--with-yielding-select=no \
+CFLAGS=&quot;-I$(pwd)/../openssl/cross_install/include&quot; \
+LDFLAGS=&quot;-L$(pwd)/../openssl/cross_install/lib&quot; &amp;&amp; {
+    if false; then
+        make uninstall
+        make clean
+    fi  
+    make &amp;&amp; make install
+}
+</code></pre>
+</li>
+</ul>
+<p>NTP 使用参考链接：<a href="https://www.php.cn/linux-479820.html">linux同步时间命令</a></p>
 <h4 id="opus"><a class="header" href="#opus"><a href="https://opus-codec.org/">Opus</a></a></h4>
 <p><a href="https://baike.baidu.com/item/opus/680370">Opus</a> 是一个有损声音编码的格式，由 Xiph.Org 基金会开发，之后由 IETF（互联网工程任务组）进行标准化，目标是希望用单一格式包含声音和语音，取代 Speex 和 Vorbis，且适用于网络上低延迟的即时声音传输，标准格式定义于 RFC 6716 文件。Opus 格式是一个开放格式，使用上没有任何专利或限制。</p>
 <p>Opus 包含有几个代码库，这里编译 opus-tools 编解码工具及其依赖库opus、opusfile、libopusenc、ogg、opunssl；</p>
 <ul>
-<li>下载代码并更新到需要的版本</li>
+<li>
+<p>下载代码并更新到需要的版本</p>
+<pre><code class="language-shell"></code></pre>
+</li>
 </ul>
-<pre><code class="language-shell">git clone https://github.com/xiph/opus.git &amp;&amp; cd opus &amp;&amp; git reset --hard v1.2.1 &amp;&amp; cd -
+<h1 id="download_opussh"><a class="header" href="#download_opussh">download_opus.sh</a></h1>
+<p>git clone https://github.com/xiph/opus.git &amp;&amp; cd opus &amp;&amp; git reset --hard v1.2.1 &amp;&amp; cd -
 git clone https://github.com/xiph/opusfile.git &amp;&amp; cd opusfile &amp;&amp; git reset --hard v0.9 &amp;&amp; cd -
 git clone https://github.com/xiph/libopusenc.git &amp;&amp; cd libopusenc &amp;&amp; git reset --hard v0.2.1 &amp;&amp; cd -
 git clone https://github.com/xiph/ogg.git &amp;&amp; cd ogg &amp;&amp; git reset --hard v1.3.5 &amp;&amp; cd -
 git clone https://github.com/openssl/openssl.git &amp;&amp; cd openssl &amp;&amp; git reset --hard OpenSSL_1_1_1 &amp;&amp; cd -
-git clone https://github.com/xiph/opus-tools.git &amp;&amp; cd opus-tools &amp;&amp; git reset --hard v0.2 &amp;&amp; cd -
-</code></pre>
-<ul>
-<li>编译 opus</li>
-</ul>
-<pre><code class="language-shell">cd opus
+git clone https://github.com/xiph/opus-tools.git &amp;&amp; cd opus-tools &amp;&amp; git reset --hard v0.2 &amp;&amp; cd -</p>
+<pre><code>
+- 编译 opus
+
+```shell
+# build_opus.sh
+
+cd opus
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -406,9 +541,11 @@ mkdir -p ${INSTALL_DIR}
 }
 </code></pre>
 <ul>
-<li>编译 libopusenc</li>
-</ul>
-<pre><code class="language-shell">cd libopusenc
+<li>
+<p>编译 libopusenc</p>
+<pre><code class="language-shell"># build_libopusenc.sh
+
+cd libopusenc
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -425,10 +562,12 @@ DEPS_LIBS=&quot;-L../opus/${INSTALL_DIR}/lib/&quot; &amp;&amp; {
     make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 opusfile</li>
-</ul>
-<pre><code class="language-shell">cd opusfile
+</li>
+<li>
+<p>编译 opusfile</p>
+<pre><code class="language-shell"># build_opusfile.sh
+
+cd opusfile
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -447,10 +586,12 @@ URL_DEPS_LIBS=&quot;-L../openssl/${INSTALL_DIR}/lib/&quot; &amp;&amp; {
     make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 ogg</li>
-</ul>
-<pre><code class="language-shell">cd ogg
+</li>
+<li>
+<p>编译 ogg</p>
+<pre><code class="language-shell"># build_ogg.sh
+
+cd ogg
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -464,10 +605,14 @@ mkdir -p ${INSTALL_DIR}
     make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 openssl</li>
-</ul>
-<pre><code class="language-shell">INSTALL_DIR=cross_install
+</li>
+<li>
+<p>编译 openssl</p>
+<pre><code class="language-shell"># build_openssl.sh
+
+cd openssl
+
+INSTALL_DIR=cross_install
 mkdir -p ${INSTALL_DIR}
 
 ./Configure linux-generic32 --prefix=$(pwd)/${INSTALL_DIR} \
@@ -480,10 +625,12 @@ mkdir -p ${INSTALL_DIR}
     make depend &amp;&amp; make &amp;&amp; make install
 }
 </code></pre>
-<ul>
-<li>编译 opus-tools</li>
-</ul>
-<pre><code class="language-shell">cd opus-tools
+</li>
+<li>
+<p>编译 opus-tools</p>
+<pre><code class="language-shell"># build_opus_tools.sh
+
+cd opus-tools
 ./autogen.sh
 
 INSTALL_DIR=cross_install
@@ -535,7 +682,9 @@ if [ $? = &quot;0&quot; ]; then
     make &amp;&amp; make install
 fi
 </code></pre>
-<p>opus-tools 使用文档：<a href="https://opus-codec.org/docs/">Documentation – Opus Codec (opus-codec.org)</a></p>
+</li>
+</ul>
+<p>opus-tools 使用参考链接：<a href="https://opus-codec.org/docs/">Documentation – Opus Codec</a></p>
 
                     </main>
 
