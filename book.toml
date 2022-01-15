@@ -1,0 +1,43 @@
+[book]
+title = "Hello-Embedded-Linux"
+authors = ["HeyGoda"]
+description = "嵌入式Linux系统基本操作介绍。Introduction to basic operation of Embedded-Linux system."
+language = "zh-CN"
+multilingual = false
+src = "./"
+
+[build]
+build-dir = "./docs"
+create-missing = false
+
+[preprocessor.links]
+
+[preprocessor.index]
+
+[output.html]
+#theme = "my-theme"
+default-theme = "Rust"
+curly-quotes = true
+mathjax-support = false
+#google-analytics = "123456"
+#additional-css = ["custom.css", "custom2.css"]
+#additional-js = ["custom.js"]
+no-section-label = false
+git-repository-url = "https://github.com/HeyGoda/Hello-Embedded-Linux"
+git-repository-icon = "fa-github"
+
+[output.html.playpen]
+editable = false
+copy-js = true
+
+[output.html.search]
+enable = true
+limit-results = 30
+teaser-word-count = 30
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 1
+boost-paragraph = 1
+expand = true
+heading-split-level = 3
+copy-js = true

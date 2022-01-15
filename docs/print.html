@@ -1,16 +1,16 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="zh-CN" class="sidebar-visible no-js rust">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
+        <title>Hello-Embedded-Linux</title>
         <meta name="robots" content="noindex" />
 
 
         <!-- Custom HTML head -->
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="嵌入式Linux系统基本操作介绍。Introduction to basic operation of Embedded-Linux system.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -37,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -63,7 +63,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -100,8 +100,8 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
@@ -111,11 +111,14 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title"></h1>
+                    <h1 class="menu-title">Hello-Embedded-Linux</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HeyGoda/Hello-Embedded-Linux" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
                     </div>
@@ -332,7 +335,7 @@ PARALLEL_MAKE = &quot;-j 2&quot;
 <tr><td>wait</td><td>在 sysinit 后执行，该条件下 <code>init</code> 等待程序执行完成后再执行下一条；</td></tr>
 <tr><td>once</td><td>在 wait 后执行，该条件下 <code>init</code> 不等待程序执行完就开始执行下一条；</td></tr>
 <tr><td>respawn</td><td>接着 once 后执行，该条件下执行程序并在程序退出时重新执行它，常用于执行守护进程；</td></tr>
-<tr><td>askfirst</td><td>接着 once 后执行，功能与 respawn 类似，但在运行程序前 <code>init</code> 会提示 &quot;Please press Enter to activate this console&quot;，等待用户按下「回车键」之后，才开始执行程序，常用于在终端启动一个不需要登录用户名和密码的交互式 shell；</td></tr>
+<tr><td>askfirst</td><td>接着 once 后执行，功能与 respawn 类似，但在运行程序前 <code>init</code> 会提示 “Please press Enter to activate this console”，等待用户按下「回车键」之后，才开始执行程序，常用于在终端启动一个不需要登录用户名和密码的交互式 shell；</td></tr>
 <tr><td>shutdown</td><td>系统「暂停/重启/关机」（ <code>halt/reboot/poweroff</code> ）或 <code>init</code> 接收到 <code>SIGQUIT</code> 信号时执行，</td></tr>
 <tr><td>restart</td><td><code>init</code> 接收到 <code>SIGQUIT</code> 信号（键盘上同时按下 <code>Ctrl-\\</code> ）时执行，表示需要重新加载 <code>/etc/inittab</code> 配置文件，如果没有定义 restart 条件，则 <code>SIGQUIT</code> 信号不起作用；</td></tr>
 <tr><td>ctrlaltdel</td><td><code>init</code> 接收到 <code>SIGINT</code> 信号（键盘上同时按下 <code>Ctrl-Alt-Del</code> ）时执行，执行完后，askfirst / respawn 的执行流程会被挂起；</td></tr>
@@ -450,7 +453,7 @@ for i in /etc/init.d/S??* ;do
     esac
 done
 </code></pre>
-<p>该脚本将按数字顺序执行 <code>/etc/init.d/</code> 目录下以字符 'S' 为名称开头的脚本，如果脚本以字符串 &quot;.sh&quot; 为名称结尾，则在当前进程中执行；否则，脚本将在单独的进程中执行；按照 Linux 标准库的要求，这些脚本应该能接收 <code>start</code> 作为参数，参考: <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">Init Script Actions (linuxfoundation.org)</a>了解更多；</p>
+<p>该脚本将按数字顺序执行 <code>/etc/init.d/</code> 目录下以字符 ‘S’ 为名称开头的脚本，如果脚本以字符串 “.sh” 为名称结尾，则在当前进程中执行；否则，脚本将在单独的进程中执行；按照 Linux 标准库的要求，这些脚本应该能接收 <code>start</code> 作为参数，参考: <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">Init Script Actions (linuxfoundation.org)</a>了解更多；</p>
 <p>如图（4 个脚本将按从上到下的顺序依次执行）：</p>
 <div align=center><img src="figures/00/initd_Sn.png"></div>
 </li>
@@ -488,7 +491,7 @@ for i in $(ls -r /etc/init.d/S??*) ;do
     esac
 done
 </code></pre>
-<p>该脚本将按数字顺序执行 <code>/etc/init.d/</code> 目录下以字母 'K' 为名称开头的脚本，如果脚本以字符串 &quot;.sh&quot; 为名称结尾，则在当前进程中执行；否则，脚本将在单独的进程中执行；按照 Linux 标准库的要求，这些脚本应该能接收 <code>stop</code> 作为参数，参考: <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">Init Script Actions (linuxfoundation.org)</a>了解更多；</p>
+<p>该脚本将按数字顺序执行 <code>/etc/init.d/</code> 目录下以字母 ‘K’ 为名称开头的脚本，如果脚本以字符串 “.sh” 为名称结尾，则在当前进程中执行；否则，脚本将在单独的进程中执行；按照 Linux 标准库的要求，这些脚本应该能接收 <code>stop</code> 作为参数，参考: <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">Init Script Actions (linuxfoundation.org)</a>了解更多；</p>
 </li>
 <li>
 <p>接着执行 <code>/sbin/swapoff -a</code> 关闭系统交换空间；</p>
@@ -549,7 +552,7 @@ done
 <p>init.d 脚本</p>
 <p>每个运行级别都对应一个名为 <code>/etc/init.d/rc&lt;runlevel&gt;.d</code> 的目录，如图：</p>
 <div align=center><img src="figures/00/initd_rcd.png"></div>
-<p>切换运行级别时，运行级别处理脚本 <code>/etc/init.d/rc</code> 接收一个参数表示将要切换到的运行级别，首先执行此运行级别对应目录 <code>/etc/init.d/rc&lt;runlevel&gt;.d</code> 下所有以大写字符 'K' 开头的脚本，并使用 <code>stop</code> 作为其参数，然后运行相同目录下以字符 'S' 开头的脚本，并使用 <code>start</code> 作为其参数；同样的，'K' 或 'S' 后紧跟的 2 位数字作为脚本的执行顺序，如果数字相同，则按照其后的字符顺序来执行；</p>
+<p>切换运行级别时，运行级别处理脚本 <code>/etc/init.d/rc</code> 接收一个参数表示将要切换到的运行级别，首先执行此运行级别对应目录 <code>/etc/init.d/rc&lt;runlevel&gt;.d</code> 下所有以大写字符 ‘K’ 开头的脚本，并使用 <code>stop</code> 作为其参数，然后运行相同目录下以字符 ‘S’ 开头的脚本，并使用 <code>start</code> 作为其参数；同样的，‘K’ 或 ‘S’ 后紧跟的 2 位数字作为脚本的执行顺序，如果数字相同，则按照其后的字符顺序来执行；</p>
 <p>下图是一个运行级别 5 对应目录的例子：</p>
 <div align=center><img src="figures/00/initd_rc5d.png"></div>
 <p>可以看到，运行级别对应目录 <code>rc&lt;runlevel&gt;.d</code> 中的文件实际上是 <code>init.d</code> 目录中相应脚本的符号链接，该脚本接收 2 个参数 <code>start</code> 和 <code>stop</code>，分别用于启动和停止操作；你也可以按照此规则在 <code>init.d</code> 目录下添加自定义的脚本，然后符号链接到对应的运行级别目录；</p>
@@ -621,8 +624,8 @@ AMA0:12345:respawn:/bin/start_getty 115200 ttyAMA0 vt102
 <table><thead><tr><th>action</th><th>含义</th></tr></thead><tbody>
 <tr><td>respawn</td><td>执行程序并在程序退出时重新执行它；</td></tr>
 <tr><td>respawnlate</td><td>作用同 respawn，但是需等 procd init 完成后才开始执行程序；</td></tr>
-<tr><td>askfirst</td><td>作用与 respawn 类似，但在执行程序前会提示 &quot;Please press Enter to activate this console&quot;，等待用户按下「回车键」之后，才开始执行程序；</td></tr>
-<tr><td>askconsole</td><td>作用与 askfirst 类似，但其作用的终端是传递给内核的命令行参数 &quot;console=&quot;，而不是像 askfirst 一样接收一个参数作终端；</td></tr>
+<tr><td>askfirst</td><td>作用与 respawn 类似，但在执行程序前会提示 “Please press Enter to activate this console”，等待用户按下「回车键」之后，才开始执行程序；</td></tr>
+<tr><td>askconsole</td><td>作用与 askfirst 类似，但其作用的终端是传递给内核的命令行参数 “console=”，而不是像 askfirst 一样接收一个参数作终端；</td></tr>
 <tr><td>askconsolelate</td><td>作用同 askconsole，但是需等 procd init 完成后才开始执行程序；</td></tr>
 <tr><td>sysinit</td><td>触发 procd 执行相应的命令，该命令由传递的参数给出，仅执行一次；这通常用于触发 <code>/etc/rc.d/</code> 目录下脚本的执行；</td></tr>
 </tbody></table>
@@ -634,12 +637,12 @@ AMA0:12345:respawn:/bin/start_getty 115200 ttyAMA0 vt102
 ttyAMA0::askfirst:/usr/libexec/login.sh
 </code></pre>
 <ol>
-<li>sysinit 所在行用于执行 <code>/etc/rc.d/</code> 目录下的启动脚本，这些启动脚本以字符 'S' 开头，需符合 procd init 脚本规范；该行的作用相当于 <code>/etc/rc.d/S* boot</code>；</li>
-<li>shutdown 所在行用于执行 <code>/etc/rc.d/</code> 目录下的关机脚本，这些脚本以字符 'K' 开头，需符合 procd init 脚本规范；该行的作用相当于 <code>/etc/rc.d/K* shutdown</code>；</li>
+<li>sysinit 所在行用于执行 <code>/etc/rc.d/</code> 目录下的启动脚本，这些启动脚本以字符 ‘S’ 开头，需符合 procd init 脚本规范；该行的作用相当于 <code>/etc/rc.d/S* boot</code>；</li>
+<li>shutdown 所在行用于执行 <code>/etc/rc.d/</code> 目录下的关机脚本，这些脚本以字符 ‘K’ 开头，需符合 procd init 脚本规范；该行的作用相当于 <code>/etc/rc.d/K* shutdown</code>；</li>
 <li>askfirst 所在行用于在 <code>/dev/ttyAMA0</code> 执行 <code>/usr/libexec/login.sh</code> 登录脚本；</li>
 </ol>
 <blockquote>
-<p>注意：&quot;/etc/init.d/rcS&quot; 字段是被忽略的（实际系统中也并不存在此脚本），可以填入任意其他字符，但不能为空；</p>
+<p>注意：“/etc/init.d/rcS” 字段是被忽略的（实际系统中也并不存在此脚本），可以填入任意其他字符，但不能为空；</p>
 </blockquote>
 </li>
 <li>
@@ -724,7 +727,7 @@ done
  
 exit 0
 </code></pre>
-<p>该文件功能为间隔几秒输出一句&quot;Hey, XX, it's time to get up&quot;；</p>
+<p>该文件功能为间隔几秒输出一句“Hey, XX, it’s time to get up“；</p>
 <p><code>/etc/config/myservice</code> 配置文件内容：</p>
 <pre><code>config myservice 'hello'
     option name 'Joost'
@@ -961,9 +964,9 @@ mkdir -p ${INSTALL_DIR}
 <p>cd openssl</p>
 <p>INSTALL_DIR=cross_install
 mkdir -p ${INSTALL_DIR}</p>
-<p>./Configure linux-generic32 --prefix=$(pwd)/${INSTALL_DIR} <br />
+<p>./Configure linux-generic32 –prefix=$(pwd)/${INSTALL_DIR} <br />
 -lpthread <br />
---cross-compile-prefix=arm-linux-gnueabihf- &amp;&amp; {
+–cross-compile-prefix=arm-linux-gnueabihf- &amp;&amp; {
 if true; then
 make uninstall
 make clean
@@ -1114,12 +1117,12 @@ LDFLAGS=&quot;-L$(pwd)/../openssl/cross_install/lib&quot; &amp;&amp; {
 </li>
 </ul>
 <h1 id="download_opussh"><a class="header" href="#download_opussh">download_opus.sh</a></h1>
-<p>git clone https://github.com/xiph/opus.git &amp;&amp; cd opus &amp;&amp; git reset --hard v1.2.1 &amp;&amp; cd -
-git clone https://github.com/xiph/opusfile.git &amp;&amp; cd opusfile &amp;&amp; git reset --hard v0.9 &amp;&amp; cd -
-git clone https://github.com/xiph/libopusenc.git &amp;&amp; cd libopusenc &amp;&amp; git reset --hard v0.2.1 &amp;&amp; cd -
-git clone https://github.com/xiph/ogg.git &amp;&amp; cd ogg &amp;&amp; git reset --hard v1.3.5 &amp;&amp; cd -
-git clone https://github.com/openssl/openssl.git &amp;&amp; cd openssl &amp;&amp; git reset --hard OpenSSL_1_1_1 &amp;&amp; cd -
-git clone https://github.com/xiph/opus-tools.git &amp;&amp; cd opus-tools &amp;&amp; git reset --hard v0.2 &amp;&amp; cd -</p>
+<p>git clone https://github.com/xiph/opus.git &amp;&amp; cd opus &amp;&amp; git reset –hard v1.2.1 &amp;&amp; cd -
+git clone https://github.com/xiph/opusfile.git &amp;&amp; cd opusfile &amp;&amp; git reset –hard v0.9 &amp;&amp; cd -
+git clone https://github.com/xiph/libopusenc.git &amp;&amp; cd libopusenc &amp;&amp; git reset –hard v0.2.1 &amp;&amp; cd -
+git clone https://github.com/xiph/ogg.git &amp;&amp; cd ogg &amp;&amp; git reset –hard v1.3.5 &amp;&amp; cd -
+git clone https://github.com/openssl/openssl.git &amp;&amp; cd openssl &amp;&amp; git reset –hard OpenSSL_1_1_1 &amp;&amp; cd -
+git clone https://github.com/xiph/opus-tools.git &amp;&amp; cd opus-tools &amp;&amp; git reset –hard v0.2 &amp;&amp; cd -</p>
 <pre><code>
 - 编译 opus
 
