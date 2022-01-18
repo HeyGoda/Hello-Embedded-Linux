@@ -294,7 +294,7 @@ PARALLEL_MAKE = &quot;-j 2&quot;
 <li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#init-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B">init 初始化系统简介</a>
 <ul>
 <li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#busybox-init">BusyBox init</a></li>
-<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#sysvinit">sysvinit</a></li>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#sysvinit">SysVinit</a></li>
 <li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#openwrt-procd">OpenWrt procd</a></li>
 <li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#systemd">systemd</a></li>
 </ul>
@@ -309,17 +309,17 @@ PARALLEL_MAKE = &quot;-j 2&quot;
 <div align=center><img src="figures/00/embedded_boot.jpg"></div>
 <p>可见，无论在何种平台上，引导启动流程最终都会运行一个名为 <a href="https://baike.baidu.com/item/init%E8%BF%9B%E7%A8%8B/3042859">init</a> 的进程，在系统中的文件为 <code>/sbin/init</code>，该进程的实体及其相关的规则也称为初始化系统：<a href="https://wiki.gentoo.org/wiki/Init_system">init system</a>；该进程是 Linux 系统启动的第一个进程，其进程 ID 为 1，负责创建系统所需的所有其它进程和守护进程，是系统中所有其它进程的「祖先」，在系统关机时该进程还负责回收所有的系统资源。</p>
 <h3 id="init-初始化系统简介"><a class="header" href="#init-初始化系统简介">init 初始化系统简介</a></h3>
-<p>Linux init 初始化系统有不同的版本，如：sysvinit、systemd、openRC、runit等，点击 <a href="https://wiki.gentoo.org/wiki/Comparison_of_init_systems">这里</a> 了解其差异性；</p>
+<p>Linux init 初始化系统有不同的版本，如：SysVinit、systemd、openRC、runit等，点击 <a href="https://wiki.gentoo.org/wiki/Comparison_of_init_systems">这里</a> 了解其差异性；</p>
 <ul>
-<li><a href="https://savannah.nongnu.org/projects/sysvinit">sysvinit</a> 是 System V 风格的初始化程序集合，是一个经典的初始化系统；</li>
-<li><a href="https://systemd.io/">systemd</a> 是sysvinit的 <a href="https://www.freedesktop.org/wiki/Software/systemd/">替代版本</a>，并且支持 System V 和 <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/tocsysinit.html">LSB init</a> 脚本，常见于桌面和服务器 Linux 发行版，如 Ubuntu：</li>
+<li><a href="https://savannah.nongnu.org/projects/sysvinit">SysVinit</a> 是 System V 风格的初始化程序集合，是一个经典的初始化系统；</li>
+<li><a href="https://systemd.io/">systemd</a> 是 SysVinit 的 <a href="https://www.freedesktop.org/wiki/Software/systemd/">替代版本</a>，并且支持 System V 和 <a href="https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/tocsysinit.html">LSB init</a> 脚本，常见于桌面和服务器 Linux 发行版，如 Ubuntu：</li>
 </ul>
 <div align=center><img src="figures/00/ubuntu_systemd.png"></div>
 <ul>
 <li><a href="https://wiki.gentoo.org/wiki/OpenRC">openRC</a> 是 <a href="https://www.gentoo.org/">Gentoo</a> 发行版的原生初始化系统，是一个基于依赖的初始化系统，用于类 Unix 系统；支持在启动时以正确的顺序启动必要的系统服务，在系统使用时管理它们，在关闭时停止它们；</li>
-<li><a href="http://smarden.org/runit">runit</a> 是一个跨平台的 Unix 初始化系统，可用于替换 sysvinit，具有服务监控、可靠的日志记录工具等特点；</li>
+<li><a href="http://smarden.org/runit">runit</a> 是一个跨平台的 Unix 初始化系统，可用于替换 SysVinit，具有服务监控、可靠的日志记录工具等特点；</li>
 </ul>
-<p>嵌入式 Linux 中常用的初始化系统有BusyBox init、sysvinit 和 OpenWrt procd 等，systemd 因占用资源较多，不常用于嵌入式设备；</p>
+<p>嵌入式 Linux 中常用的初始化系统有BusyBox init、SysVinit 和 OpenWrt procd 等，systemd 因占用资源较多，不常用于嵌入式设备（桌面和服务器发行版初始化系统介绍请参考：<a href="https://learning.lpi.org/en/learning-materials/101-500/101/101.3/101.3_01/">101.3 Lesson 1 (lpi.org)</a>）；</p>
 <h4 id="busybox-init"><a class="header" href="#busybox-init">BusyBox init</a></h4>
 <p><a href="https://baike.baidu.com/item/busybox">BusyBox</a> 是一个组合了许多常见 Unix 实用程序精简版的软件，其中包括一个 <code>init</code> 程序，如图：</p>
 <div align=center><img src="figures/00/busybox_init.png"></div>
@@ -518,18 +518,18 @@ done
 <blockquote>
 <p>参考链接：<a href="https://subscription.packtpub.com/book/iot_and_hardware/9781789530384/15/ch15lvl1sec30/busybox-init">BusyBox init | Mastering Embedded Linux Programming - Third Edition</a></p>
 </blockquote>
-<h4 id="sysvinit"><a class="header" href="#sysvinit">sysvinit</a></h4>
-<p><a href="https://wiki.gentoo.org/wiki/Sysvinit">sysvinit</a> (System V init) 的设计灵感来自于Unix System V，最早可以追溯到 1980 年代中期，最初由 Miquel van Smoorenburg 编写，用于控制系统的启动和关闭；</p>
-<p>BusyBox init 守护程序只是 sysvinit 的精简版本。与 BusyBox init 相比，sysvinit 主要有2个优点：支持运行级别，允许从一个运行级别切换到另一个时，一次性启动或停止一组程序；以模块化的方式组织启动脚本，方便在编译或运行阶段添加脚本；</p>
+<h4 id="sysvinit"><a class="header" href="#sysvinit">SysVinit</a></h4>
+<p><a href="https://wiki.gentoo.org/wiki/Sysvinit">SysVinit</a> (System V init) 的设计灵感来自于Unix System V，最早可以追溯到 1980 年代中期，最初由 Miquel van Smoorenburg 编写，用于控制系统的启动和关闭；</p>
+<p>BusyBox init 守护程序只是 SysVinit 的精简版本。与 BusyBox init 相比，SysVinit 主要有2个优点：支持运行级别，允许从一个运行级别切换到另一个时，一次性启动或停止一组程序；以模块化的方式组织启动脚本，方便在编译或运行阶段添加脚本；</p>
 <ul>
 <li>
 <p>规则格式</p>
-<p>sysvinit 配置文件 <code>/etc/inittab</code> 首先应通过 <code>initdefault</code> 指定运行级别，以下语句指定运行级别为 3：</p>
+<p>SysVinit 配置文件 <code>/etc/inittab</code> 首先应通过 <code>initdefault</code> 指定运行级别，以下语句指定运行级别为 3：</p>
 <pre><code>id:3:initdefault:
 </code></pre>
 <p>系统启动后，可以通过命令 <code>runlevel</code> 查看运行级别，还通过命令 <code>telinit [runlevel]</code> 或者 <code>init [runlevel]</code> 切换运行级别，也可以在启动内核前通过命令行参数来指定其运行级别，如指定运行级别为 1：<code>console=ttyAMA0 root=/dev/mmcblk1p2 1</code>；</p>
-<div align=center><img src="figures/00/sysvinit_runlevel.png"></div>
-<p>sysvinit 支持的规则格式比 BusyBox init 多了 runlevels 字段，如下：</p>
+<div align=center><img src="figures/00/SysVinit_runlevel.png"></div>
+<p>SysVinit 支持的规则格式比 BusyBox init 多了 runlevels 字段，如下：</p>
 <pre><code class="language-shell">id:runlevels:action:process
 </code></pre>
 </li>
@@ -569,7 +569,7 @@ done
 <p>下图是一个运行级别 5 对应目录的例子：</p>
 <div align=center><img src="figures/00/initd_rc5d.png"></div>
 <p>可以看到，运行级别对应目录 <code>rc&lt;runlevel&gt;.d</code> 中的文件实际上是 <code>init.d</code> 目录中相应脚本的符号链接，该脚本接收 2 个参数 <code>start</code> 和 <code>stop</code>，分别用于启动和停止操作；你也可以按照此规则在 <code>init.d</code> 目录下添加自定义的脚本，然后符号链接到对应的运行级别目录；</p>
-<p>以下是来自 Yocto 的 sysvinit 配置文件 <code>/etc/inittab</code>，可以看到 BusyBox init 的配置文件与其有很多相似的地方：</p>
+<p>以下是来自 Yocto 的 SysVinit 配置文件 <code>/etc/inittab</code>，可以看到 BusyBox init 的配置文件与其有很多相似的地方：</p>
 <pre><code># /etc/inittab: init(8) configuration.
 # $Id: inittab,v 1.91 2002/01/25 13:35:21 miquels Exp $
 
@@ -622,7 +622,7 @@ AMA0:12345:respawn:/bin/start_getty 115200 ttyAMA0 vt102
 </li>
 </ul>
 <h4 id="openwrt-procd"><a class="header" href="#openwrt-procd">OpenWrt procd</a></h4>
-<p>OpenWrt 的用户空间初始化包含一系列固定的步骤，供用户在启动时加入自己的内核模块、热插拔事件和初始化流程等；不同于 sysvinit 的初始化脚本，OpenWrt 使用一个名为 <a href="https://openwrt.org/docs/techref/procd">procd</a> 的进程管理守护进程（process management daemon）来执行初始化脚本和守护进程管理，该进程同时替代了这些模块的功能：<a href="https://github.com/hynnet/hotplug2">hotplug2</a>, busybox-klogd, busybox-syslogd, busybox-watchdog；OpenWrt 初始化流程如图：</p>
+<p>OpenWrt 的用户空间初始化包含一系列固定的步骤，供用户在启动时加入自己的内核模块、热插拔事件和初始化流程等；不同于 SysVinit 的初始化脚本，OpenWrt 使用一个名为 <a href="https://openwrt.org/docs/techref/procd">procd</a> 的进程管理守护进程（process management daemon）来执行初始化脚本和守护进程管理，该进程同时替代了这些模块的功能：<a href="https://github.com/hynnet/hotplug2">hotplug2</a>, busybox-klogd, busybox-syslogd, busybox-watchdog；OpenWrt 初始化流程如图：</p>
 <div align=center><img src="figures/00/openwrt_init.png"></div>
 <p>启动日志如下：</p>
 <div align=center><img src="figures/00/openwrt_boot_phase.png"></div>
