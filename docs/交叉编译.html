@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>04_交叉编译 - Hello-Embedded-Linux</title>
+        <title>交叉编译 - Hello-Embedded-Linux</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded "><a href="00_系统初始化.html"><strong aria-hidden="true">1.</strong> 00_系统初始化</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html" class="active"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded affix "><li class="part-title">认识和操作嵌入式 Linux 系统</li><li class="chapter-item expanded "><a href="系统初始化.html"><strong aria-hidden="true">1.</strong> 系统初始化</a></li><li class="chapter-item expanded "><a href="命令行和shell脚本.html"><strong aria-hidden="true">2.</strong> 命令行和shell脚本</a></li><li class="chapter-item expanded "><a href="系统资源及其配置.html"><strong aria-hidden="true">3.</strong> 系统资源及其配置</a></li><li class="chapter-item expanded "><a href="交叉编译.html" class="active"><strong aria-hidden="true">4.</strong> 交叉编译</a></li><li class="chapter-item expanded "><a href="硬件设备操作.html"><strong aria-hidden="true">5.</strong> 硬件设备操作</a></li><li class="chapter-item expanded "><a href="网络操作.html"><strong aria-hidden="true">6.</strong> 网络操作</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <ul>
-<li><a href="#04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">04_交叉编译</a>
+<li><a href="#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">交叉编译</a>
 <ul>
 <li><a href="#%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E7%A8%8B%E5%BA%8F%E9%92%88%E5%AF%B9-arm-%E8%8A%AF%E7%89%87%E7%9A%84%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95">一些开源程序针对 ARM 芯片的编译方法</a>
 <ul>
@@ -163,7 +163,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="04_交叉编译"><a class="header" href="#04_交叉编译">04_交叉编译</a></h2>
+<h2 id="交叉编译"><a class="header" href="#交叉编译">交叉编译</a></h2>
 <p>嵌入式 Linux 系统中的应用程序由特定的交叉编译工具链编译得到，此工具链一般由芯片原厂提供或指定，因为系统的内核、libc 等程序运行的基础环境都由该工具链编译得到，所以应用程序最好也用此工具工具链来编译；</p>
 <p>尽管如此，依然可以使用通用的交叉编译工具链来做测试，例如在 Ubuntu 下可以安装 <a href="https://packages.ubuntu.com/bionic/gcc-arm-linux-gnueabi">gcc-arm-linux-gnueabi</a> 或 <a href="https://packages.ubuntu.com/bionic/gcc-arm-linux-gnueabihf">gcc-arm-linux-gnueabihf</a> 来编译针对 ARM 芯片的程序：</p>
 <pre><code class="language-shell">sudo apt install gcc-arm-linux-gnueabihf
@@ -693,11 +693,11 @@ fi
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="03_shell脚本.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="系统资源及其配置.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="05_网络工具.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="硬件设备操作.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -707,11 +707,11 @@ fi
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="03_shell脚本.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="系统资源及其配置.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="05_网络工具.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="硬件设备操作.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

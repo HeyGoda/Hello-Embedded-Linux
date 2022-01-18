@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded "><a href="00_系统初始化.html"><strong aria-hidden="true">1.</strong> 00_系统初始化</a></li><li class="chapter-item expanded "><a href="01_资源和配置.html"><strong aria-hidden="true">2.</strong> 01_资源和配置</a></li><li class="chapter-item expanded "><a href="02_硬件设备.html"><strong aria-hidden="true">3.</strong> 02_硬件设备</a></li><li class="chapter-item expanded "><a href="03_shell脚本.html"><strong aria-hidden="true">4.</strong> 03_shell脚本</a></li><li class="chapter-item expanded "><a href="04_交叉编译.html"><strong aria-hidden="true">5.</strong> 04_交叉编译</a></li><li class="chapter-item expanded "><a href="05_网络工具.html"><strong aria-hidden="true">6.</strong> 05_网络工具</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded affix "><li class="part-title">认识和操作嵌入式 Linux 系统</li><li class="chapter-item expanded "><a href="系统初始化.html"><strong aria-hidden="true">1.</strong> 系统初始化</a></li><li class="chapter-item expanded "><a href="命令行和shell脚本.html"><strong aria-hidden="true">2.</strong> 命令行和shell脚本</a></li><li class="chapter-item expanded "><a href="系统资源及其配置.html"><strong aria-hidden="true">3.</strong> 系统资源及其配置</a></li><li class="chapter-item expanded "><a href="交叉编译.html"><strong aria-hidden="true">4.</strong> 交叉编译</a></li><li class="chapter-item expanded "><a href="硬件设备操作.html"><strong aria-hidden="true">5.</strong> 硬件设备操作</a></li><li class="chapter-item expanded "><a href="网络操作.html"><strong aria-hidden="true">6.</strong> 网络操作</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -151,34 +151,39 @@
 <ul>
 <li><a href="README_zh.html#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">准备工作</a>
 <ul>
-<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-buildroot-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 Buildroot 制作固件</a></li>
-<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-openwrt-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 OpenWrt 制作固件</a></li>
-<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-yocto-%E5%88%B6%E4%BD%9C%E5%9B%BA%E4%BB%B6">使用 Yocto 制作固件</a></li>
+<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-buildroot-%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F">使用 Buildroot 构建系统</a></li>
+<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-openwrt-%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F">使用 OpenWrt 构建系统</a></li>
+<li><a href="README_zh.html#%E4%BD%BF%E7%94%A8-yocto-%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F">使用 Yocto 构建系统</a></li>
 </ul>
 </li>
-<li><a href="README_zh.html#%E8%AE%A4%E8%AF%86%E5%92%8C%E6%93%8D%E4%BD%9C%E5%B5%8C%E5%85%A5%E5%BC%8F-linux-%E8%AE%BE%E5%A4%87">认识和操作嵌入式 Linux 设备</a>
+<li><a href="README_zh.html#%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B">内容简介</a>
 <ul>
-<li>▣<a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">00_系统初始化</a></li>
-<li>▢<a href="01_%E8%B5%84%E6%BA%90%E5%92%8C%E9%85%8D%E7%BD%AE.html">01_资源和配置</a></li>
-<li>▢<a href="02_%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87.html">02_硬件设备</a></li>
-<li>▢<a href="03_shell%E8%84%9A%E6%9C%AC.html">03_shell脚本</a></li>
-<li>▣<a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">04_交叉编译</a></li>
-<li>▢<a href="05_%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7.html">05_网络工具</a></li>
+<li><a href="README_zh.html#%E8%AE%A4%E8%AF%86%E5%92%8C%E6%93%8D%E4%BD%9C%E5%B5%8C%E5%85%A5%E5%BC%8F-linux-%E7%B3%BB%E7%BB%9F">认识和操作嵌入式 Linux 系统</a>
+<ul>
+<li><a href="README_zh.html#%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96">▣ 系统初始化</a></li>
+<li><a href="README_zh.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8Cshell%E8%84%9A%E6%9C%AC">▢ 命令行和shell脚本</a></li>
+<li><a href="README_zh.html#%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE">▢ 系统资源及其配置</a></li>
+<li><a href="README_zh.html#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">▣ 交叉编译</a></li>
+<li><a href="README_zh.html#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%93%8D%E4%BD%9C">▢ 硬件设备操作</a></li>
+<li><a href="README_zh.html#%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C">▢ 网络操作</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h2 id="概述"><a class="header" href="#概述">概述</a></h2>
-<p>嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致每种设备上的系统操作方式存在差异，在此总结一些针对嵌入式 Linux 系统的通用操作方法；</p>
+<p>嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致不同设备上的软件系统，开发和测试人员在面对一个新设备时难免会感到困惑，在此总结一些通用知识，介绍几个主流嵌入式 Linux 系统之间的异同点，及其跟桌面 Linux 发行版之间的差别，方便熟悉和掌握各种不同的嵌入式 Linux 系统操作方法。</p>
 <h3 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h3>
-<p>本文档使用 <a href="https://www.qemu.org/">QEMU</a> 来模拟实际嵌入式设备，QEMU 是一个开源的硬件模拟器和虚拟器，当用作硬件模拟器时，QEMU 可以在一台机器（例如 PC）上运行为另一台机器（例如 ARM 开发板）制作的操作系统和程序；本文档使用 <a href="https://buildroot.org/">Buildroot</a>、<a href="https://openwrt.org/">OpenWrt</a>、<a href="https://www.yoctoproject.org/">Yocto</a> 等构建系统来制作嵌入式 Linux 系统固件，以下在 Ubuntu 20.4 系统中分别说明其制作方法；</p>
+<p>本文档大部分情况下采用 <a href="https://www.qemu.org/">QEMU</a> 来模拟嵌入式设备，如果你已经有嵌入式开发板或设备，则可以结合本文档来实操，而不一定需要安装 QEMU；</p>
+<p>QEMU 是一个开源的硬件模拟器和虚拟器，当用作硬件模拟器时，QEMU 可以在一台机器（例如 PC）上运行为另一台机器（例如 ARM 开发板）制作的操作系统和程序；本文档使用 <a href="https://buildroot.org/">Buildroot</a>、<a href="https://openwrt.org/">OpenWrt</a>、<a href="https://www.yoctoproject.org/">Yocto</a> 等构建系统来制作嵌入式 Linux 操作系统及程序，以下在桌面版 Ubuntu 20.4 系统中分别说明其制作方法；</p>
 <blockquote>
-<p>请先确保 Ubuntu 20.4 系统安装了 ，执行以下命令：</p>
+<p>请先确保系统安装了 QEMU，执行以下命令：</p>
 <pre><code class="language-shell">sudo apt install qemu
 </code></pre>
 </blockquote>
-<h4 id="使用-buildroot-制作固件"><a class="header" href="#使用-buildroot-制作固件">使用 Buildroot 制作固件</a></h4>
+<h4 id="使用-buildroot-构建系统"><a class="header" href="#使用-buildroot-构建系统">使用 Buildroot 构建系统</a></h4>
 <p>Buildroot 是一个简单、高效、易用的构建工具，通过交叉编译生成嵌入式 Linux 系统，支持多种嵌入式 Linux 开发板，同时也支持一些 QEMU 板级；以下使用 Buildroot 板级 <code>qemu_arm_vexpress_defconfig</code> 来构建固件，对应 qemu 机器 <code>vexpress-a9</code>；</p>
 <p>安装必要的软件（参考链接： <a href="https://buildroot.org/downloads/manual/manual.html#requirement">The Buildroot user manual</a>）：</p>
 <pre><code class="language-shell">sudo apt install which sed make binutils build-essential gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc wget git
@@ -200,7 +205,7 @@ make
 <div align=center><img src="figures/buildroot_make.png"></div>
 <p>执行脚本 <code>output/images/start-qemu.sh serial-only</code> 以终端方式（无显示屏）运行编译后的固件，如图：</p>
 <div align=center><img src="figures/buildroot_start.png"></div>
-<h4 id="使用-openwrt-制作固件"><a class="header" href="#使用-openwrt-制作固件">使用 OpenWrt 制作固件</a></h4>
+<h4 id="使用-openwrt-构建系统"><a class="header" href="#使用-openwrt-构建系统">使用 OpenWrt 构建系统</a></h4>
 <p><a href="https://openwrt.org/">OpenWrt</a> 是一个面向嵌入式设备的 Linux 操作系统，最初是针对路由器设备，拥有强大的网络组件和扩展性，具有良好的模块化和可定制性，现在也常用做其他嵌入式设备的 Linux 发行版；</p>
 <p>因 <a href="https://git.openwrt.org/">OpenWrt 源码</a> 编译时间较长，且编译过程中可能碰到各种各样的问题，为方便起见，在此使用 <a href="https://openwrt.org/docs/guide-user/virtualization/qemu">官方提供</a> 的 QEMU arm 镜像文件；</p>
 <p>下载镜像文件：</p>
@@ -223,7 +228,7 @@ qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
 </code></pre>
 <p>运行后如图：</p>
 <div align=center><img src="figures/openwrt_start.png"></div>
-<h4 id="使用-yocto-制作固件"><a class="header" href="#使用-yocto-制作固件">使用 Yocto 制作固件</a></h4>
+<h4 id="使用-yocto-构建系统"><a class="header" href="#使用-yocto-构建系统">使用 Yocto 构建系统</a></h4>
 <p><a href="https://www.yoctoproject.org/">Yocto</a> 是一个开源协作项目，提供了一些列模板、工具和方法，旨在帮助用户创建自定义的基于 Linux 的系统，可用于任何架构的硬件，例如：嵌入式设备、服务器或虚拟环境等；以下使用 beaglebone-yocto 板级来作演示；</p>
 <p>参考链接：<a href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html">Yocto Project Quick Build — The Yocto Project ® 3.4 documentation</a>, <a href="https://docs.yoctoproject.org/dev-manual/qemu.html">4 Using the Quick EMUlator (QEMU) — The Yocto Project ® 3.4 documentation</a></p>
 <p>安装必要的软件：</p>
@@ -268,28 +273,36 @@ PARALLEL_MAKE = &quot;-j 2&quot;
 </code></pre>
 <p>运行后如图：</p>
 <div align=center><img src="figures/yocto_start.png"></div>
-<h3 id="认识和操作嵌入式-linux-设备"><a class="header" href="#认识和操作嵌入式-linux-设备">认识和操作嵌入式 Linux 设备</a></h3>
-<h4 id="00_系统初始化"><a class="header" href="#00_系统初始化">▣<a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">00_系统初始化</a></a></h4>
-<h4 id="01_资源和配置"><a class="header" href="#01_资源和配置">▢<a href="01_%E8%B5%84%E6%BA%90%E5%92%8C%E9%85%8D%E7%BD%AE.html">01_资源和配置</a></a></h4>
-<h4 id="02_硬件设备"><a class="header" href="#02_硬件设备">▢<a href="02_%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87.html">02_硬件设备</a></a></h4>
-<h4 id="03_shell脚本"><a class="header" href="#03_shell脚本">▢<a href="03_shell%E8%84%9A%E6%9C%AC.html">03_shell脚本</a></a></h4>
-<h4 id="04_交叉编译"><a class="header" href="#04_交叉编译">▣<a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">04_交叉编译</a></a></h4>
-<h4 id="05_网络工具"><a class="header" href="#05_网络工具">▢<a href="05_%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7.html">05_网络工具</a></a></h4>
+<h3 id="内容简介"><a class="header" href="#内容简介">内容简介</a></h3>
+<h4 id="认识和操作嵌入式-linux-系统"><a class="header" href="#认识和操作嵌入式-linux-系统">认识和操作嵌入式 Linux 系统</a></h4>
+<p>从使用者角度介绍嵌入式 Linux 系统基础知识和操作方法；</p>
+<h5 id="系统初始化"><a class="header" href="#系统初始化"><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">系统初始化</a></a></h5>
+<p>介绍用户空间初始化流程；</p>
+<h5 id="命令行和shell脚本"><a class="header" href="#命令行和shell脚本"><a href="%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8Cshell%E8%84%9A%E6%9C%AC.html">命令行和shell脚本</a></a></h5>
+<p>介绍常见命令行使用方法和shell脚本基本语法；</p>
+<h5 id="系统资源及其配置"><a class="header" href="#系统资源及其配置"><a href="%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE.html">系统资源及其配置</a></a></h5>
+<p>介绍系统级资源及其配置方法；</p>
+<h5 id="交叉编译"><a class="header" href="#交叉编译"><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html">交叉编译</a></a></h5>
+<p>介绍开源软件交叉编译方法；</p>
+<h5 id="硬件设备操作"><a class="header" href="#硬件设备操作"><a href="%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%93%8D%E4%BD%9C.html">硬件设备操作</a></a></h5>
+<p>介绍常用硬件操作和使用方法；</p>
+<h5 id="网络操作"><a class="header" href="#网络操作"><a href="%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C.html">网络操作</a></a></h5>
+<p>介绍网络操作方法；</p>
 <div style="break-before: page; page-break-before: always;"></div><ul>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96">00_系统初始化</a>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96">系统初始化</a>
 <ul>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#init-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B">init 初始化系统简介</a>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#init-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B">init 初始化系统简介</a>
 <ul>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#busybox-init">BusyBox init</a></li>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#sysvinit">sysvinit</a></li>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#openwrt-procd">OpenWrt procd</a></li>
-<li><a href="00_%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#systemd">systemd</a></li>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#busybox-init">BusyBox init</a></li>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#sysvinit">sysvinit</a></li>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#openwrt-procd">OpenWrt procd</a></li>
+<li><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html#systemd">systemd</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="00_系统初始化-1"><a class="header" href="#00_系统初始化-1">00_系统初始化</a></h2>
+<h2 id="系统初始化-1"><a class="header" href="#系统初始化-1">系统初始化</a></h2>
 <p>Linux 系统无法自我启动，需要依靠其他的程序来引导启动，在桌面和服务器发行版中，引导启动流程如图所示：<a href="https://developer.ibm.com/articles/l-linuxboot/"><em>The 20,000-foot view of the Linux boot process</em></a></p>
 <div align=center><img src="figures/00/pc_boot.gif"></div>
 <p>在嵌入式 Linux 系统中，流程如图所示：<a href="https://www.embeddedartists.com/wp-content/uploads/2019/03/iMX_Working_with_Linux_and_uboot.pdf"><em>Overview of boot process</em></a></p>
@@ -742,28 +755,27 @@ exit 0
 </ul>
 <h4 id="systemd"><a class="header" href="#systemd">systemd</a></h4>
 <p>待补充</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="01_资源和配置-1"><a class="header" href="#01_资源和配置-1">01_资源和配置</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="02_硬件设备-1"><a class="header" href="#02_硬件设备-1">02_硬件设备</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="03_shell脚本-1"><a class="header" href="#03_shell脚本-1">03_shell脚本</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="命令行和shell脚本-1"><a class="header" href="#命令行和shell脚本-1">命令行和shell脚本</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="系统资源及其配置-1"><a class="header" href="#系统资源及其配置-1">系统资源及其配置</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><ul>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">04_交叉编译</a>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">交叉编译</a>
 <ul>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E7%A8%8B%E5%BA%8F%E9%92%88%E5%AF%B9-arm-%E8%8A%AF%E7%89%87%E7%9A%84%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95">一些开源程序针对 ARM 芯片的编译方法</a>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E7%A8%8B%E5%BA%8F%E9%92%88%E5%AF%B9-arm-%E8%8A%AF%E7%89%87%E7%9A%84%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95">一些开源程序针对 ARM 芯片的编译方法</a>
 <ul>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#busybox">BusyBox</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#glibc">glibc</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#gdb">GDB</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#iw">iw</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#wpa_supplicant">wpa_supplicant</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#tcpdump">TCPDUMP</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#ntp">NTP</a></li>
-<li><a href="04_%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#opus">Opus</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#busybox">BusyBox</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#glibc">glibc</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#gdb">GDB</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#iw">iw</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#wpa_supplicant">wpa_supplicant</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#tcpdump">TCPDUMP</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#ntp">NTP</a></li>
+<li><a href="%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91.html#opus">Opus</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="04_交叉编译-1"><a class="header" href="#04_交叉编译-1">04_交叉编译</a></h2>
+<h2 id="交叉编译-1"><a class="header" href="#交叉编译-1">交叉编译</a></h2>
 <p>嵌入式 Linux 系统中的应用程序由特定的交叉编译工具链编译得到，此工具链一般由芯片原厂提供或指定，因为系统的内核、libc 等程序运行的基础环境都由该工具链编译得到，所以应用程序最好也用此工具工具链来编译；</p>
 <p>尽管如此，依然可以使用通用的交叉编译工具链来做测试，例如在 Ubuntu 下可以安装 <a href="https://packages.ubuntu.com/bionic/gcc-arm-linux-gnueabi">gcc-arm-linux-gnueabi</a> 或 <a href="https://packages.ubuntu.com/bionic/gcc-arm-linux-gnueabihf">gcc-arm-linux-gnueabihf</a> 来编译针对 ARM 芯片的程序：</p>
 <pre><code class="language-shell">sudo apt install gcc-arm-linux-gnueabihf
@@ -1288,7 +1300,8 @@ fi
 </li>
 </ul>
 <p>opus-tools 使用参考链接：<a href="https://opus-codec.org/docs/">Documentation – Opus Codec</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="05_网络工具-1"><a class="header" href="#05_网络工具-1">05_网络工具</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="硬件设备操作-1"><a class="header" href="#硬件设备操作-1">硬件设备操作</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="网络操作-1"><a class="header" href="#网络操作-1">网络操作</a></h2>
 
                     </main>
 

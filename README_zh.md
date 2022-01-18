@@ -1,30 +1,33 @@
 * [概述](#概述)
     * [准备工作](#准备工作)
-      * [使用 Buildroot 制作固件](#使用-buildroot-制作固件)
-      * [使用 OpenWrt 制作固件](#使用-openwrt-制作固件)
-      * [使用 Yocto 制作固件](#使用-yocto-制作固件)
-    * [认识和操作嵌入式 Linux 设备](#认识和操作嵌入式-linux-设备)
-      * ▣[00_系统初始化](00_系统初始化.md)
-      * ▢[01_资源和配置](01_资源和配置.md)
-      * ▢[02_硬件设备](02_硬件设备.md)
-      * ▢[03_shell脚本](03_shell脚本.md)
-      * ▣[04_交叉编译](04_交叉编译.md)
-      * ▢[05_网络工具](05_网络工具.md)
+      * [使用 Buildroot 构建系统](#使用-buildroot-构建系统)
+      * [使用 OpenWrt 构建系统](#使用-openwrt-构建系统)
+      * [使用 Yocto 构建系统](#使用-yocto-构建系统)
+    * [内容简介](#内容简介)
+      * [认识和操作嵌入式 Linux 系统](#认识和操作嵌入式-linux-系统)
+        * [▣ 系统初始化](#系统初始化)
+        * [▢ 命令行和shell脚本](#命令行和shell脚本)
+        * [▢ 系统资源及其配置](#系统资源及其配置)
+        * [▣ 交叉编译](#交叉编译)
+        * [▢ 硬件设备操作](#硬件设备操作)
+        * [▢ 网络操作](#网络操作)
 
 ## 概述
-嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致每种设备上的系统操作方式存在差异，在此总结一些针对嵌入式 Linux 系统的通用操作方法；
+嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致不同设备上的软件系统，开发和测试人员在面对一个新设备时难免会感到困惑，在此总结一些通用知识，介绍几个主流嵌入式 Linux 系统之间的异同点，及其跟桌面 Linux 发行版之间的差别，方便熟悉和掌握各种不同的嵌入式 Linux 系统操作方法。
 
 ### 准备工作
 
-本文档使用 [QEMU](https://www.qemu.org/) 来模拟实际嵌入式设备，QEMU 是一个开源的硬件模拟器和虚拟器，当用作硬件模拟器时，QEMU 可以在一台机器（例如 PC）上运行为另一台机器（例如 ARM 开发板）制作的操作系统和程序；本文档使用 [Buildroot](https://buildroot.org/)、[OpenWrt](https://openwrt.org/)、[Yocto](https://www.yoctoproject.org/) 等构建系统来制作嵌入式 Linux 系统固件，以下在 Ubuntu 20.4 系统中分别说明其制作方法；
+本文档大部分情况下采用 [QEMU](https://www.qemu.org/) 来模拟嵌入式设备，如果你已经有嵌入式开发板或设备，则可以结合本文档来实操，而不一定需要安装 QEMU；
 
-> 请先确保 Ubuntu 20.4 系统安装了 ，执行以下命令：
+QEMU 是一个开源的硬件模拟器和虚拟器，当用作硬件模拟器时，QEMU 可以在一台机器（例如 PC）上运行为另一台机器（例如 ARM 开发板）制作的操作系统和程序；本文档使用 [Buildroot](https://buildroot.org/)、[OpenWrt](https://openwrt.org/)、[Yocto](https://www.yoctoproject.org/) 等构建系统来制作嵌入式 Linux 操作系统及程序，以下在桌面版 Ubuntu 20.4 系统中分别说明其制作方法；
+
+> 请先确保系统安装了 QEMU，执行以下命令：
 >
 > ```shell
 > sudo apt install qemu
 > ```
 
-#### 使用 Buildroot 制作固件
+#### 使用 Buildroot 构建系统
 
 Buildroot 是一个简单、高效、易用的构建工具，通过交叉编译生成嵌入式 Linux 系统，支持多种嵌入式 Linux 开发板，同时也支持一些 QEMU 板级；以下使用 Buildroot 板级 `qemu_arm_vexpress_defconfig` 来构建固件，对应 qemu 机器 `vexpress-a9`；
 
@@ -61,7 +64,7 @@ make
 
 <div align=center><img src="figures/buildroot_start.png"></div>
 
-#### 使用 OpenWrt 制作固件
+#### 使用 OpenWrt 构建系统
 
 [OpenWrt](https://openwrt.org/) 是一个面向嵌入式设备的 Linux 操作系统，最初是针对路由器设备，拥有强大的网络组件和扩展性，具有良好的模块化和可定制性，现在也常用做其他嵌入式设备的 Linux 发行版；
 
@@ -97,7 +100,7 @@ qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
 
 <div align=center><img src="figures/openwrt_start.png"></div>
 
-#### 使用 Yocto 制作固件
+#### 使用 Yocto 构建系统
 
 [Yocto](https://www.yoctoproject.org/) 是一个开源协作项目，提供了一些列模板、工具和方法，旨在帮助用户创建自定义的基于 Linux 的系统，可用于任何架构的硬件，例如：嵌入式设备、服务器或虚拟环境等；以下使用 beaglebone-yocto 板级来作演示；
 
@@ -177,16 +180,32 @@ runqemu beaglebone-yocto
 
 <div align=center><img src="figures/yocto_start.png"></div>
 
-### 认识和操作嵌入式 Linux 设备
+### 内容简介
 
-#### ▣[00_系统初始化](00_系统初始化.md)
+#### 认识和操作嵌入式 Linux 系统
 
-#### ▢[01_资源和配置](01_资源和配置.md)
+从使用者角度介绍嵌入式 Linux 系统基础知识和操作方法；
 
-#### ▢[02_硬件设备](02_硬件设备.md)
+##### [系统初始化](系统初始化.md)
 
-#### ▢[03_shell脚本](03_shell脚本.md)
+介绍用户空间初始化流程；
 
-#### ▣[04_交叉编译](04_交叉编译.md)
+##### [命令行和shell脚本](命令行和shell脚本.md)
 
-#### ▢[05_网络工具](05_网络工具.md)
+介绍常见命令行使用方法和shell脚本基本语法；
+
+##### [系统资源及其配置](系统资源及其配置.md)
+
+介绍系统级资源及其配置方法；
+
+##### [交叉编译](交叉编译.md)
+
+介绍开源软件交叉编译方法；
+
+##### [硬件设备操作](硬件设备操作.md)
+
+介绍常用硬件操作和使用方法；
+
+##### [网络操作](网络操作.md)
+
+介绍网络操作方法；
