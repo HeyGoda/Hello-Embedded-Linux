@@ -1,16 +1,16 @@
-* [概述](#概述)
-    * [准备工作](#准备工作)
-      * [使用 Buildroot 构建系统](#使用-buildroot-构建系统)
-      * [使用 OpenWrt 构建系统](#使用-openwrt-构建系统)
-      * [使用 Yocto 构建系统](#使用-yocto-构建系统)
-    * [内容简介](#内容简介)
-      * [认识和操作嵌入式 Linux 系统](#认识和操作嵌入式-linux-系统)
-        * [▣ 系统初始化](#系统初始化)
-        * [▢ 命令行和shell脚本](#命令行和shell脚本)
-        * [▢ 系统资源及其配置](#系统资源及其配置)
-        * [▣ 交叉编译](#交叉编译)
-        * [▢ 硬件设备操作](#硬件设备操作)
-        * [▢ 网络操作](#网络操作)
+- [概述](#概述)
+  - [准备工作](#准备工作)
+    - [使用 Buildroot 构建系统](#使用-buildroot-构建系统)
+    - [使用 OpenWrt 构建系统](#使用-openwrt-构建系统)
+    - [使用 Yocto 构建系统](#使用-yocto-构建系统)
+  - [内容简介](#内容简介)
+    - [认识和操作嵌入式 Linux 系统](#认识和操作嵌入式-linux-系统)
+      - [系统初始化](#系统初始化)
+      - [命令行和shell脚本](#命令行和shell脚本)
+      - [系统资源及其配置](#系统资源及其配置)
+      - [交叉编译](#交叉编译)
+      - [硬件设备操作](#硬件设备操作)
+      - [网络操作](#网络操作)
 
 ## 概述
 嵌入式 Linux 设备多种多样，因 Linux 系统内核、驱动、应用等的自由裁剪和组合，导致不同设备上的软件系统，开发和测试人员在面对一个新设备时难免会感到困惑，在此总结一些通用知识，介绍几个主流嵌入式 Linux 系统之间的异同点，及其跟桌面 Linux 发行版之间的差别，方便熟悉和掌握各种不同的嵌入式 Linux 系统操作方法。
@@ -58,11 +58,11 @@ make
 
 编译成功后固件在 `output/images/` 目录下，如图：
 
-<div align=center><img src="figures/buildroot_make.png"></div>
+<div align=center><img src="figures/readme/buildroot_make.png"></div>
 
 执行脚本 `output/images/start-qemu.sh serial-only` 以终端方式（无显示屏）运行编译后的固件，如图：
 
-<div align=center><img src="figures/buildroot_start.png"></div>
+<div align=center><img src="figures/readme/buildroot_start.png"></div>
 
 #### 使用 OpenWrt 构建系统
 
@@ -84,7 +84,7 @@ gunzip -kv openwrt-armvirt-32-rootfs-ext4.img.gz
 
 如图：
 
-<div align=center><img src="figures/openwrt_down.png"></div>
+<div align=center><img src="figures/readme/openwrt_down.png"></div>
 
 使用以下命令运行镜像：
 
@@ -98,7 +98,7 @@ qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
 
 运行后如图：
 
-<div align=center><img src="figures/openwrt_start.png"></div>
+<div align=center><img src="figures/readme/openwrt_start.png"></div>
 
 #### 使用 Yocto 构建系统
 
@@ -154,7 +154,7 @@ PARALLEL_MAKE = "-j 2"
 
 如图：
 
-<div align=center><img src="figures/yocto_env.png"></div>
+<div align=center><img src="figures/readme/yocto_env.png"></div>
 
 然后开始编译：
 
@@ -164,11 +164,11 @@ bitbake -k core-image-minimal
 
 编译时间较长，若编译失败，可删除 `sstate-cache`, `cache`, `tmp`目录下的所有文件重新编译，编译成功后的固件在 `tmp/deploy/images/beaglebone-yocto/` 目录下，如图：
 
-<div align=center><img src="figures/yocto_build.png"></div>
+<div align=center><img src="figures/readme/yocto_build.png"></div>
 
 修改 QEMU 运行配置文件 `tmp/deploy/images/beaglebone-yocto/core-image-minimal-beaglebone-yocto.qemuboot.conf`，加入选项 `-nographic`，如图：
 
-<div align=center><img src="figures/yocto_qemu_conf.png"></div>
+<div align=center><img src="figures/readme/yocto_qemu_conf.png"></div>
 
 最后执行以下命令运行编译的镜像：
 
@@ -178,7 +178,7 @@ runqemu beaglebone-yocto
 
 运行后如图：
 
-<div align=center><img src="figures/yocto_start.png"></div>
+<div align=center><img src="figures/readme/yocto_start.png"></div>
 
 ### 内容简介
 
