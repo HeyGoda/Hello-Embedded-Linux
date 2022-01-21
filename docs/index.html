@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded affix "><li class="part-title">认识和操作嵌入式 Linux 系统</li><li class="chapter-item expanded "><a href="系统初始化.html"><strong aria-hidden="true">1.</strong> 系统初始化</a></li><li class="chapter-item expanded "><a href="命令行和shell脚本.html"><strong aria-hidden="true">2.</strong> 命令行和shell脚本</a></li><li class="chapter-item expanded "><a href="系统资源及其配置.html"><strong aria-hidden="true">3.</strong> 系统资源及其配置</a></li><li class="chapter-item expanded "><a href="交叉编译.html"><strong aria-hidden="true">4.</strong> 交叉编译</a></li><li class="chapter-item expanded "><a href="硬件设备操作.html"><strong aria-hidden="true">5.</strong> 硬件设备操作</a></li><li class="chapter-item expanded "><a href="网络操作.html"><strong aria-hidden="true">6.</strong> 网络操作</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="README_zh.html">Hello-Embedded-Linux</a></li><li class="chapter-item expanded affix "><li class="part-title">认识和操作嵌入式 Linux 系统</li><li class="chapter-item expanded "><a href="系统初始化.html"><strong aria-hidden="true">1.</strong> 系统初始化</a></li><li class="chapter-item expanded "><a href="命令行-vi和shell.html"><strong aria-hidden="true">2.</strong> 命令行 - vi 和 shell</a></li><li class="chapter-item expanded "><a href="系统资源及其配置.html"><strong aria-hidden="true">3.</strong> 系统资源及其配置</a></li><li class="chapter-item expanded "><a href="交叉编译.html"><strong aria-hidden="true">4.</strong> 交叉编译</a></li><li class="chapter-item expanded "><a href="硬件设备操作.html"><strong aria-hidden="true">5.</strong> 硬件设备操作</a></li><li class="chapter-item expanded "><a href="网络操作.html"><strong aria-hidden="true">6.</strong> 网络操作</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,12 +159,12 @@
 <ul>
 <li><a href="#%E8%AE%A4%E8%AF%86%E5%92%8C%E6%93%8D%E4%BD%9C%E5%B5%8C%E5%85%A5%E5%BC%8F-linux-%E7%B3%BB%E7%BB%9F">认识和操作嵌入式 Linux 系统</a>
 <ul>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96">▣ 系统初始化</a></li>
-<li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8Cshell%E8%84%9A%E6%9C%AC">▢ 命令行和shell脚本</a></li>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE">▢ 系统资源及其配置</a></li>
-<li><a href="#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">▣ 交叉编译</a></li>
-<li><a href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%93%8D%E4%BD%9C">▢ 硬件设备操作</a></li>
-<li><a href="#%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C">▢ 网络操作</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96">系统初始化</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C---vi-%E5%92%8C-shell">命令行 - vi 和 shell</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE">系统资源及其配置</a></li>
+<li><a href="#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91">交叉编译</a></li>
+<li><a href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%93%8D%E4%BD%9C">硬件设备操作</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C">网络操作</a></li>
 </ul>
 </li>
 </ul>
@@ -201,9 +201,9 @@ make qemu_arm_vexpress_defconfig
 make
 </code></pre>
 <p>编译成功后固件在 <code>output/images/</code> 目录下，如图：</p>
-<div align=center><img src="figures/buildroot_make.png"></div>
+<div align=center><img src="figures/readme/buildroot_make.png"></div>
 <p>执行脚本 <code>output/images/start-qemu.sh serial-only</code> 以终端方式（无显示屏）运行编译后的固件，如图：</p>
-<div align=center><img src="figures/buildroot_start.png"></div>
+<div align=center><img src="figures/readme/buildroot_start.png"></div>
 <h4 id="使用-openwrt-构建系统"><a class="header" href="#使用-openwrt-构建系统">使用 OpenWrt 构建系统</a></h4>
 <p><a href="https://openwrt.org/">OpenWrt</a> 是一个面向嵌入式设备的 Linux 操作系统，最初是针对路由器设备，拥有强大的网络组件和扩展性，具有良好的模块化和可定制性，现在也常用做其他嵌入式设备的 Linux 发行版；</p>
 <p>因 <a href="https://git.openwrt.org/">OpenWrt 源码</a> 编译时间较长，且编译过程中可能碰到各种各样的问题，为方便起见，在此使用 <a href="https://openwrt.org/docs/guide-user/virtualization/qemu">官方提供</a> 的 QEMU arm 镜像文件；</p>
@@ -217,7 +217,7 @@ wget https://downloads.openwrt.org/snapshots/targets/armvirt/32/openwrt-armvirt-
 gunzip -kv openwrt-armvirt-32-rootfs-ext4.img.gz
 </code></pre>
 <p>如图：</p>
-<div align=center><img src="figures/openwrt_down.png"></div>
+<div align=center><img src="figures/readme/openwrt_down.png"></div>
 <p>使用以下命令运行镜像：</p>
 <pre><code class="language-shell"># run-qemu-arm_openwrt.sh
 qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
@@ -226,7 +226,7 @@ qemu-system-arm -nographic -cpu cortex-a7 -smp 1 -M virt -m 256 \
 -device virtio-blk-pci,drive=hd0
 </code></pre>
 <p>运行后如图：</p>
-<div align=center><img src="figures/openwrt_start.png"></div>
+<div align=center><img src="figures/readme/openwrt_start.png"></div>
 <h4 id="使用-yocto-构建系统"><a class="header" href="#使用-yocto-构建系统">使用 Yocto 构建系统</a></h4>
 <p><a href="https://www.yoctoproject.org/">Yocto</a> 是一个开源协作项目，提供了一些列模板、工具和方法，旨在帮助用户创建自定义的基于 Linux 的系统，可用于任何架构的硬件，例如：嵌入式设备、服务器或虚拟环境等；以下使用 beaglebone-yocto 板级来作演示；</p>
 <p>参考链接：<a href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html">Yocto Project Quick Build — The Yocto Project ® 3.4 documentation</a>, <a href="https://docs.yoctoproject.org/dev-manual/qemu.html">4 Using the Quick EMUlator (QEMU) — The Yocto Project ® 3.4 documentation</a></p>
@@ -259,25 +259,25 @@ BB_NUMBER_THREADS = &quot;2&quot;
 PARALLEL_MAKE = &quot;-j 2&quot;
 </code></pre>
 <p>如图：</p>
-<div align=center><img src="figures/yocto_env.png"></div>
+<div align=center><img src="figures/readme/yocto_env.png"></div>
 <p>然后开始编译：</p>
 <pre><code class="language-shell">bitbake -k core-image-minimal
 </code></pre>
 <p>编译时间较长，若编译失败，可删除 <code>sstate-cache</code>, <code>cache</code>, <code>tmp</code>目录下的所有文件重新编译，编译成功后的固件在 <code>tmp/deploy/images/beaglebone-yocto/</code> 目录下，如图：</p>
-<div align=center><img src="figures/yocto_build.png"></div>
+<div align=center><img src="figures/readme/yocto_build.png"></div>
 <p>修改 QEMU 运行配置文件 <code>tmp/deploy/images/beaglebone-yocto/core-image-minimal-beaglebone-yocto.qemuboot.conf</code>，加入选项 <code>-nographic</code>，如图：</p>
-<div align=center><img src="figures/yocto_qemu_conf.png"></div>
+<div align=center><img src="figures/readme/yocto_qemu_conf.png"></div>
 <p>最后执行以下命令运行编译的镜像：</p>
 <pre><code>runqemu beaglebone-yocto
 </code></pre>
 <p>运行后如图：</p>
-<div align=center><img src="figures/yocto_start.png"></div>
+<div align=center><img src="figures/readme/yocto_start.png"></div>
 <h3 id="内容简介"><a class="header" href="#内容简介">内容简介</a></h3>
 <h4 id="认识和操作嵌入式-linux-系统"><a class="header" href="#认识和操作嵌入式-linux-系统">认识和操作嵌入式 Linux 系统</a></h4>
 <p>从使用者角度介绍嵌入式 Linux 系统基础知识和操作方法；</p>
 <h5 id="系统初始化"><a class="header" href="#系统初始化"><a href="%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96.html">系统初始化</a></a></h5>
 <p>介绍用户空间初始化流程；</p>
-<h5 id="命令行和shell脚本"><a class="header" href="#命令行和shell脚本"><a href="%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8Cshell%E8%84%9A%E6%9C%AC.html">命令行和shell脚本</a></a></h5>
+<h5 id="命令行---vi-和-shell"><a class="header" href="#命令行---vi-和-shell"><a href="%E5%91%BD%E4%BB%A4%E8%A1%8C-vi%E5%92%8Cshell.html">命令行 - vi 和 shell</a></a></h5>
 <p>介绍常见命令行使用方法和shell脚本基本语法；</p>
 <h5 id="系统资源及其配置"><a class="header" href="#系统资源及其配置"><a href="%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE.html">系统资源及其配置</a></a></h5>
 <p>介绍系统级资源及其配置方法；</p>
